@@ -107,6 +107,7 @@ a{color:var(--accent)}
 .tag{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.02em;
   color:hsl(var(--h) var(--chip-s) var(--chip-l));background:hsl(var(--h) 40% var(--chip-bg-l));white-space:nowrap}
 .region{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.new{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gain);background:var(--gain-soft);padding:1px 6px;border-radius:999px}
 .story h3{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.25;margin:2px 0 0;letter-spacing:-.005em;font-variation-settings:"opsz" 24;text-wrap:pretty}
 .story.read h3{color:var(--muted);font-weight:400}
 .story .sum{grid-column:1/-1;color:var(--muted);font-size:13.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -239,6 +240,10 @@ a{color:var(--accent)}
           <button data-region="india" aria-pressed="false">India</button>
           <button data-region="world" aria-pressed="false">World</button>
         </div>
+        <div class="seg" role="group" aria-label="Order">
+          <button data-sort="top" aria-pressed="true">Top</button>
+          <button data-sort="latest" aria-pressed="false">Latest</button>
+        </div>
         <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Search today's stories" autocomplete="off"></label>
       </div>
       <div class="chips" id="chips" role="group" aria-label="Sections"></div>
@@ -338,7 +343,8 @@ const store = {
   set(k, v){ try{ localStorage.setItem("bb:"+k, JSON.stringify(v)); }catch(e){} }
 };
 const state = {
-  view: store.get("view","today"), region: store.get("region","all"), section: "all", q:"", limit: 30,
+  view: store.get("view","today"), region: store.get("region","all"), section: "all", q:"", limit: 30, sort: store.get("sort","top"),
+  lastSeen: store.get("lastSeen", 0), sessionStart: Date.now(),
   read: new Set(store.get("read",[])), saved: store.get("saved",[]),
   feed: null, markets: null, dailies: [], weeklies: [], dayIdx: 0, span: "day", secOpen: null,
   db: null, sample: null, sampleTried:false
@@ -369,7 +375,7 @@ function renderFresh(){
   const el=$("fresh"), tx=$("freshText");
   if(!state.feed){ el.className="fresh off"; tx.textContent = state.db===null && state.dbResolved ? "Offline" : "Connecting…"; return; }
   const ageH = (Date.now()-Date.parse(state.feed.updatedAt))/3600000;
-  el.className = "fresh"+(ageH>9?" stale":"");
+  el.className = "fresh"+(ageH>2.5?" stale":"");
   tx.textContent = "Updated "+ago(state.feed.updatedAt);
 }
 setInterval(renderFresh, 60000);
@@ -392,8 +398,9 @@ function renderRail(){
 function tagHtml(secId){ const s=SEC[secId]||{label:secId,h:200}; return `<span class="tag" style="--h:${s.h}">${esc(s.label)}</span>`; }
 function storyHtml(a, lead){
   const isRead = state.read.has(a.id), isSaved = state.saved.includes(a.id);
+  const isNew = !isRead && state.lastSeen && Date.parse(a.publishedAt) > state.lastSeen;
   return `<button class="story${isRead?" read":""}${lead?" lead":""}" data-open="${esc(a.id)}" aria-haspopup="dialog">
-    <div class="meta">${tagHtml(a.section)}<span class="region">${a.region==="india"?"India":"World"}</span><span>${esc(a.source)}</span><span>·</span><span>${ago(a.publishedAt)}</span></div>
+    <div class="meta">${tagHtml(a.section)}<span class="region">${a.region==="india"?"India":"World"}</span><span>${esc(a.source)}</span><span>·</span><span>${ago(a.publishedAt)}</span>${isNew?'<span class="new">New</span>':""}</div>
     <h3>${esc(a.title)}</h3>
     ${isSaved?'<span class="saved-mark" aria-label="Saved">■</span>':""}
     ${a.why?`<div class="why">${esc(a.why)}</div>`:(a.summary?`<div class="sum">${esc(a.summary)}</div>`:"")}
@@ -406,6 +413,7 @@ function filteredToday(){
   if(state.region!=="all") list = list.filter(a=>a.region===state.region);
   if(state.section!=="all") list = list.filter(a=>a.section===state.section);
   if(state.q){ const q=state.q.toLowerCase(); list = list.filter(a=>(a.title+" "+(a.summary||"")+" "+a.source).toLowerCase().includes(q)); }
+  if(state.sort==="latest") list.sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt));
   return list;
 }
 function renderChips(){
@@ -421,8 +429,10 @@ function renderToday(){
   if(!state.feed){ list.innerHTML = skeletonList(6); $("todayCount").textContent=""; $("moreBtn").hidden=true; return; }
   const items = filteredToday();
   const filtered = state.section!=="all" || state.region!=="all" || state.q;
-  $("todayTitle").textContent = state.q ? "Search results" : state.section!=="all" ? SEC[state.section].label : (state.region==="india"?"Top stories · India":state.region==="world"?"Top stories · World":"Top stories");
-  $("todayCount").textContent = items.length+" stor"+(items.length===1?"y":"ies");
+  const base = state.sort==="latest" ? "Latest" : "Top stories";
+  $("todayTitle").textContent = state.q ? "Search results" : state.section!=="all" ? SEC[state.section].label : (state.region==="india"?base+" · India":state.region==="world"?base+" · World":base);
+  const newCount = state.lastSeen ? items.filter(a=>Date.parse(a.publishedAt)>state.lastSeen && !state.read.has(a.id)).length : 0;
+  $("todayCount").textContent = items.length+" stor"+(items.length===1?"y":"ies")+(newCount?" · "+newCount+" new since your last visit":"");
   if(!items.length){ list.innerHTML = `<div class="empty"><strong>Nothing here yet</strong>${filtered?"Try another field or region.":"The desk has not published today's stories yet."}</div>`; $("moreBtn").hidden=true; return; }
   const shown = items.slice(0, state.limit);
   list.innerHTML = shown.map((a,i)=>storyHtml(a, i===0 && !state.q)).join("");
@@ -620,6 +630,8 @@ document.addEventListener("click", (e)=>{
   if(t.dataset.region){ state.region=t.dataset.region; store.set("region",state.region); state.limit=30;
     document.querySelectorAll("[data-region]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.region===state.region)); renderToday(); return; }
   if(t.dataset.sec){ state.section=t.dataset.sec; state.limit=30; renderToday(); return; }
+  if(t.dataset.sort){ state.sort=t.dataset.sort; store.set("sort",state.sort); state.limit=30;
+    document.querySelectorAll("[data-sort]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.sort===state.sort)); renderToday(); return; }
   if(t.dataset.secopen){ state.secOpen=t.dataset.secopen; renderSections(); window.scrollTo({top:0}); return; }
   if(t.id==="secBack"){ state.secOpen=null; renderSections(); return; }
   if(t.dataset.span){ state.span=t.dataset.span; document.querySelectorAll("[data-span]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.span===state.span)); renderRecap(); return; }
@@ -631,6 +643,9 @@ document.addEventListener("keydown", e=>{ if(e.key==="Escape" && $("sheet").clas
 $("q").addEventListener("input", e=>{ state.q=e.target.value.trim(); state.limit=30; renderToday(); });
 $("askForm").addEventListener("submit", e=>{ e.preventDefault(); const q=$("askInput").value.trim(); if(q) askDesk(q); });
 document.querySelectorAll("[data-region]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.region===state.region));
+document.querySelectorAll("[data-sort]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.sort===state.sort));
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="hidden") store.set("lastSeen", Date.now()); });
+window.addEventListener("pagehide", ()=>store.set("lastSeen", Date.now()));
 showView(state.view);
 renderAll();
 

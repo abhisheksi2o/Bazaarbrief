@@ -6,7 +6,10 @@ cleans, de-duplicates, classifies each story into a section and a region,
 ranks, and writes:
   articles.json  - ranked, classified stories (for feed/latest)
   markets.json   - quotes with sparklines (for markets/latest)
-Standard library only. Usage: python3 pipeline.py [outdir]
+Standard library only.
+Usage: python3 pipeline.py [outdir] [--merge OLD_FEED_JSON]
+  --merge: also write feed.json, carrying over editorial fields (why, section,
+           region) from the previous feed document for stories that persist.
 """
 import concurrent.futures as cf
 import datetime as dt
@@ -20,10 +23,13 @@ import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 
-OUT = sys.argv[1] if len(sys.argv) > 1 else "."
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+OUT = ARGS[0] if ARGS else "."
+MERGE = sys.argv[sys.argv.index("--merge") + 1] if "--merge" in sys.argv and len(sys.argv) > sys.argv.index("--merge") + 1 else None
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36"
 NOW = dt.datetime.now(dt.timezone.utc)
-MAX_AGE_H = 36
+MAX_AGE_H = 24
+FALLBACK_AGE_H = 36
 
 # name, url, region hint, source weight, default section
 FEEDS = [
@@ -155,7 +161,7 @@ JUNK = re.compile(r"(stocks?\s+to\s+(buy|watch|track)|buy\s+or\s+sell|top\s+(gai
     r"\btips?\b|how\s+to\s+invest|nfo\b|\bsip\b\s+calculator|tax\s+saving|should\s+you\s+(buy|invest|subscribe)|"
     r"penny\s+stock|stocks?\s+in\s+focus|hot\s+stocks|stock\s+of\s+the\s+day|brokerage\s+radar|"
     r"investment\s+ideas?|chart\s+check|options\s+strategy|weekly\s+options|expert\s+(view|picks)|"
-    r"trading\s+guide|recommendations?\b|share\s+price\s+highlights|stock\s+price\s+history|price\s+history|"
+    r"trading\s+guide|recommendations?\b|f&o\s+talk|picks\s+\d|top\s+\d+\s+stocks|share\s+price\s+highlights|stock\s+price\s+history|price\s+history|"
     r"gmp\b|grey\s+market\s+premium|subscription\s+status|day\s+\d+\s+live|quiz|crossword|sudoku|"
     r"gift\s+nifty\s+signals|live\s+updates?\s*:|live\s+blog|share\s+price\s+live|share\s+price\s+today|"
     r"why\s+is\s+\S+\s+share\s+(price\s+)?(rising|falling)|opinion\s*\||mint\s+primer|explainer\s*:|"
@@ -366,7 +372,7 @@ def build_articles():
             if d is None:
                 continue
             age_h = (NOW - d).total_seconds() / 3600
-            if age_h > MAX_AGE_H or age_h < -2:
+            if age_h > FALLBACK_AGE_H or age_h < -2:
                 continue
             title = it["title"]
             publisher = name
@@ -429,12 +435,17 @@ def build_articles():
                 break
         if not placed:
             clusters.append({"rep": a, "members": [a]})
+    # prefer the 24h window; fall back to 36h only when the day is thin (weekends, holidays)
+    fresh = [c for c in clusters if c["rep"]["_age"] <= MAX_AGE_H]
+    if len(fresh) >= 60:
+        clusters = fresh
+    import math
     out = []
     for c in clusters:
         a = c["rep"]
         n = len(c["members"])
-        recency = max(0.0, 1.0 - a["_age"] / MAX_AGE_H)
-        score = (a["_weight"] * 2.0) + (a["_imp"] * 0.6) + (recency * 3.0) + (min(n - 1, 4) * 1.2)
+        recency = math.exp(-a["_age"] / 7.0)  # half the weight is gone after ~5 hours
+        score = (a["_weight"] * 1.5) + (a["_imp"] * 0.5) + (recency * 6.0) + (min(n - 1, 4) * 1.0)
         if a["region"] == "india":
             score += 0.6
         a["score"] = round(score, 2)
@@ -525,6 +536,25 @@ if __name__ == "__main__":
         json.dump({"generatedAt": NOW.isoformat().replace("+00:00", "Z"), "articles": articles, "feedStats": stats}, f, ensure_ascii=False, indent=1)
     with open(os.path.join(OUT, "markets.json"), "w") as f:
         json.dump({"updatedAt": NOW.isoformat().replace("+00:00", "Z"), "quotes": markets}, f, ensure_ascii=False, indent=1)
+    if MERGE:
+        old = {}
+        try:
+            old = {a["id"]: a for a in json.load(open(MERGE)).get("articles", [])}
+        except Exception as e:
+            print("merge: could not read previous feed:", repr(e))
+        carried = 0
+        for a in articles:
+            o = old.get(a["id"])
+            if o:
+                for k in ("why", "section", "region"):
+                    if o.get(k):
+                        a[k] = o[k]
+                carried += 1
+        feed = {"updatedAt": NOW.isoformat().replace("+00:00", "Z"), "articles": articles, "count": len(articles),
+                "sessionLabel": "Hourly update", "sources": sorted({a["source"] for a in articles})}
+        with open(os.path.join(OUT, "feed.json"), "w") as f:
+            json.dump(feed, f, ensure_ascii=False)
+        print("merge: carried editorial fields for", carried, "of", len(articles), "stories; new:", len(articles) - carried)
     secs = {}
     for a in articles:
         secs[a["section"]] = secs.get(a["section"], 0) + 1
