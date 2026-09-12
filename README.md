@@ -1,14 +1,38 @@
 # Bazaar Brief
 
-A daily financial and economic news desk for India and the world, published as a Claude artifact.
+A daily financial and economic news desk for India and the world. Two deployments share one pipeline:
 
-- App: https://claude.ai/code/artifact/b39ceaff-f50f-42a1-b31d-b4357b2f4808
-- `app.html` – the page (single file, no build step). Reads live data from the artifact database and never hardcodes news.
-- `pipeline.py` – fetches ~30 Indian and global feeds plus Yahoo Finance quotes, cleans, de-duplicates, classifies into 12 sections and 2 regions, ranks. A copy is stored in the database at `pipeline/script` so scheduled runs can fetch it.
-- `ROUTINE.md` – the prompt for the editorial Routines; `ROUTINE-HOURLY.md` – the prompt for the hourly wire refresh.
-- `seed/` – the first edition's documents and the enrichment script used to write them.
+1. **Standalone site (GitHub Pages)** – https://abhisheksi2o.github.io/Bazaarbrief/ – built by GitHub Actions, no login needed, installable on a phone as a web app. This is the base for the Play Store / App Store build.
+2. **Claude artifact** – https://claude.ai/code/artifact/b39ceaff-f50f-42a1-b31d-b4357b2f4808 – the original version, refreshed by claude.ai Routines.
 
-## Database layout
+## Files
+
+- `pipeline.py` – fetches ~30 Indian and global feeds plus Yahoo Finance quotes, cleans, de-duplicates, classifies into 12 sections and 2 regions, ranks. `--merge` carries editorial notes over from the previous feed.
+- `editor.py` – the editorial layer through the Claude API: section fixes, junk removal, story order, "why it matters" notes, recap of the day, recap of the week. Model defaults to `claude-opus-5`; set the `DESK_MODEL` repository variable to `claude-sonnet-5` for a cheaper desk.
+- `build.py` – orchestrates a run (`--mode wire|edition|weekend`) and writes the static site to `site/`.
+- `web/` – the standalone app: `index.html`, web manifest, service worker, icons. Reads `data/*.json` next to it.
+- `.github/workflows/desk.yml` – the schedule: hourly wire refresh, weekday editions at 07:00 / 16:30 / 22:00 IST, weekend edition at 09:00 IST.
+- `app.html`, `ROUTINE.md`, `ROUTINE-HOURLY.md`, `seed/` – the Claude-artifact deployment.
+
+## Setting up the standalone site (one time)
+
+1. Repository **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+2. **Settings → Secrets and variables → Actions → New repository secret**: `ANTHROPIC_API_KEY` (from https://console.anthropic.com). Without it the site still refreshes hourly, but recaps and why-notes are not written.
+3. Optional: **Variables → New repository variable** `DESK_MODEL` = `claude-sonnet-5` to cut editorial cost by about 60%.
+4. **Actions → Bazaar Brief desk → Run workflow** (mode `edition`) for the first build, or wait for the next scheduled run.
+
+Published data layout: `data/feed.json` (stories), `data/markets.json` (quotes), `data/archive.json` (last 14 daily recaps, last 8 weekly), `data/status.json` (last build).
+
+## Local run
+
+```
+pip install anthropic
+export ANTHROPIC_API_KEY=...          # optional
+python3 build.py --mode edition --site-url https://abhisheksi2o.github.io/Bazaarbrief/ --out site
+python3 -m http.server -d site 8000   # open http://localhost:8000
+```
+
+## Claude-artifact deployment: database layout
 
 | Document | Content |
 | --- | --- |

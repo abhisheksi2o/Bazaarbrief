@@ -1,0 +1,65 @@
+name: Bazaar Brief desk
+
+on:
+  schedule:
+    - cron: "16 * * * *"        # hourly wire refresh
+    - cron: "30 1,11,16 * * 1-5" # weekday editions: 07:00, 16:30, 22:00 IST
+    - cron: "30 3 * * 0,6"      # weekend edition: 09:00 IST Sat/Sun
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "wire | edition | weekend"
+        default: "edition"
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: desk
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install anthropic
+      - name: Pick the edition for this run
+        id: mode
+        run: |
+          case "${{ github.event_name }}" in
+            workflow_dispatch) echo "mode=${{ github.event.inputs.mode }}" >> "$GITHUB_OUTPUT" ;;
+            push) echo "mode=edition" >> "$GITHUB_OUTPUT" ;;
+            schedule)
+              case "${{ github.event.schedule }}" in
+                "30 1,11,16 * * 1-5") echo "mode=edition" >> "$GITHUB_OUTPUT" ;;
+                "30 3 * * 0,6")       echo "mode=weekend" >> "$GITHUB_OUTPUT" ;;
+                *)                    echo "mode=wire" >> "$GITHUB_OUTPUT" ;;
+              esac ;;
+          esac
+      - name: Build the site
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          DESK_MODEL: ${{ vars.DESK_MODEL }}
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+        run: python3 build.py --mode "${{ steps.mode.outputs.mode }}" --out site
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

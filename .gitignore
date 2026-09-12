@@ -1,4 +1,6 @@
 seed/enrich.py
 __pycache__/
 out/
+prev/
+site/
 *.zip

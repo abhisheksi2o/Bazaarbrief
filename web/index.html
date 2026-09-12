@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161C25" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Bazaar Brief">
+<meta name="description" content="Daily Indian and global financial news desk with sections, market ticker and recaps of the day and week.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>Bazaar Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#EDF0F4; --surface:#FFFFFF; --surface-2:#F5F7FA; --ink:#151B26; --ink-2:#3B4453; --muted:#5F6978; --faint:#8B94A3;
+  --line:#D8DEE7; --line-2:#E8ECF1; --accent:#2B4C7E; --accent-ink:#FFFFFF; --accent-soft:#E3EAF5;
+  --gain:#0E7C55; --loss:#C2312E; --warn:#B3640A; --gain-soft:#E1F3EA; --loss-soft:#FBE5E4; --warn-soft:#FBEEDB;
+  --chip-l:36%; --chip-bg-l:93%; --chip-s:52%;
+  --shadow:0 12px 32px rgba(21,27,38,.16);
+  --sheet:#FFFFFF; --scrim:rgba(21,27,38,.45);
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Instrument Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0D1117; --surface:#161C25; --surface-2:#1C232E; --ink:#E8EBF0; --ink-2:#C4CAD4; --muted:#98A2B3; --faint:#6E7887;
+    --line:#2A3240; --line-2:#222935; --accent:#8FB0E3; --accent-ink:#0D1117; --accent-soft:#1E2B40;
+    --gain:#3FCB8E; --loss:#F0736E; --warn:#E9A24A; --gain-soft:#12301F; --loss-soft:#3A1B1A; --warn-soft:#3A2A12;
+    --chip-l:72%; --chip-bg-l:18%; --chip-s:45%;
+    --shadow:0 12px 32px rgba(0,0,0,.5);
+    --sheet:#161C25; --scrim:rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0D1117; --surface:#161C25; --surface-2:#1C232E; --ink:#E8EBF0; --ink-2:#C4CAD4; --muted:#98A2B3; --faint:#6E7887;
+  --line:#2A3240; --line-2:#222935; --accent:#8FB0E3; --accent-ink:#0D1117; --accent-soft:#1E2B40;
+  --gain:#3FCB8E; --loss:#F0736E; --warn:#E9A24A; --gain-soft:#12301F; --loss-soft:#3A1B1A; --warn-soft:#3A2A12;
+  --chip-l:72%; --chip-bg-l:18%; --chip-s:45%;
+  --shadow:0 12px 32px rgba(0,0,0,.5);
+  --sheet:#161C25; --scrim:rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45;
+  padding-block:0 84px;padding-inline:0;min-height:100vh}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+a{color:var(--accent)}
+.app{max-width:720px;margin:0 auto;min-height:100vh;background:var(--surface);border-inline:1px solid var(--line-2)}
+@media (max-width:740px){.app{border-inline:0}}
+
+/* masthead */
+.mast{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.mast-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 16px 6px}
+.brand{display:flex;align-items:baseline;gap:8px;min-width:0}
+.brand h1{font-family:var(--serif);font-weight:600;font-size:24px;letter-spacing:-.01em;margin:0;line-height:1;font-variation-settings:"opsz" 36}
+.brand .date{font-size:12px;color:var(--muted);white-space:nowrap}
+.fresh{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);white-space:nowrap}
+.fresh .dot{width:8px;height:8px;border-radius:50%;background:var(--gain);box-shadow:0 0 0 3px var(--gain-soft)}
+.fresh.stale .dot{background:var(--warn);box-shadow:0 0 0 3px var(--warn-soft)}
+.fresh.off .dot{background:var(--faint);box-shadow:none}
+
+/* ticker rail */
+.rail{display:flex;gap:6px;overflow-x:auto;padding:4px 12px 10px;scroll-snap-type:x proximity;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.tick{flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;gap:1px;padding:6px 10px;border-radius:8px;background:var(--surface-2);min-width:112px;text-align:left}
+.tick .l{font-size:11px;color:var(--muted);letter-spacing:.02em;white-space:nowrap}
+.tick .v{font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.tick .c{font-family:var(--mono);font-size:11.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.up{color:var(--gain)}.down{color:var(--loss)}.flat{color:var(--muted)}
+.tick.skel .v,.tick.skel .l,.tick.skel .c{background:var(--line-2);color:transparent;border-radius:4px}
+
+/* views */
+.view{display:none;padding:0 16px 24px}
+.view.active{display:block}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 10px}
+.section-head h2{font-family:var(--serif);font-weight:600;font-size:22px;margin:0;letter-spacing:-.01em;font-variation-settings:"opsz" 36;text-wrap:balance}
+.section-head .sub{font-size:12.5px;color:var(--muted)}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+
+/* controls */
+.seg{display:inline-flex;background:var(--surface-2);border-radius:999px;padding:3px;gap:2px}
+.seg button{padding:5px 12px;border-radius:999px;font-size:13px;font-weight:500;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 6px}
+.search{flex:1 1 180px;display:flex;align-items:center;gap:8px;background:var(--surface-2);border-radius:10px;padding:7px 12px;border:1px solid transparent}
+.search:focus-within{border-color:var(--accent)}
+.search input{flex:1;background:none;border:0;font:inherit;color:var(--ink);min-width:0;outline:none}
+.search input::placeholder{color:var(--faint)}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:6px 0 10px;scrollbar-width:none;margin-inline:-16px;padding-inline:16px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:0 0 auto;padding:6px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:500;color:var(--ink-2);background:var(--surface);white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.chip .n{font-family:var(--mono);font-size:11px;color:var(--faint)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.chip[aria-pressed="true"] .n{color:var(--surface);opacity:.7}
+.chip .sw{width:8px;height:8px;border-radius:50%;background:hsl(var(--h) var(--chip-s) var(--chip-l))}
+
+/* brief card (today) */
+.brief{margin-top:14px;padding:16px 16px 14px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line-2)}
+.brief .eyebrow{display:flex;justify-content:space-between;gap:10px}
+.brief h2{font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.2;margin:8px 0 6px;letter-spacing:-.01em;font-variation-settings:"opsz" 36;text-wrap:balance}
+.brief p{margin:0 0 10px;color:var(--ink-2);font-size:14.5px}
+.brief ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px}
+.brief li{margin:5px 0}
+.brief .more{display:inline-block;margin-top:10px;font-weight:600;font-size:13.5px;color:var(--accent)}
+
+/* story list */
+.stories{display:flex;flex-direction:column}
+.story{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--line-2);text-align:left;width:100%;align-items:start}
+.story:last-child{border-bottom:0}
+.story .meta{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;letter-spacing:.02em;
+  color:hsl(var(--h) var(--chip-s) var(--chip-l));background:hsl(var(--h) 40% var(--chip-bg-l));white-space:nowrap}
+.region{font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+.new{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gain);background:var(--gain-soft);padding:1px 6px;border-radius:999px}
+.story h3{font-family:var(--serif);font-weight:500;font-size:19px;line-height:1.25;margin:2px 0 0;letter-spacing:-.005em;font-variation-settings:"opsz" 24;text-wrap:pretty}
+.story.read h3{color:var(--muted);font-weight:400}
+.story .sum{grid-column:1/-1;color:var(--muted);font-size:13.5px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.story .why{grid-column:1/-1;font-size:13.5px;color:var(--ink-2);padding-left:10px;border-left:2px solid var(--accent);margin-top:2px}
+.story .saved-mark{align-self:start;color:var(--accent);font-size:16px;line-height:1;padding-top:6px}
+.story.lead h3{font-size:24px;font-weight:600;line-height:1.18;font-variation-settings:"opsz" 36}
+.story.lead .sum{-webkit-line-clamp:3}
+.empty{padding:36px 8px;text-align:center;color:var(--muted);font-size:14px}
+.empty strong{display:block;color:var(--ink);font-family:var(--serif);font-size:20px;font-weight:500;margin-bottom:6px}
+.more-btn{display:block;width:100%;margin:14px 0 0;padding:11px;border-radius:10px;background:var(--surface-2);font-weight:600;color:var(--accent);font-size:14px}
+.skeleton .story{pointer-events:none}
+.skel-line{height:12px;border-radius:5px;background:var(--line-2);margin:6px 0}
+.skel-line.w60{width:60%}.skel-line.w90{width:90%}.skel-line.tall{height:20px}
+
+/* sections grid */
+.sec-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+@media (min-width:520px){.sec-grid{grid-template-columns:repeat(3,1fr)}}
+.sec-tile{display:flex;flex-direction:column;gap:6px;padding:14px 14px 12px;border-radius:12px;background:var(--surface-2);text-align:left;border-top:3px solid hsl(var(--h) var(--chip-s) var(--chip-l));min-height:96px}
+.sec-tile .name{font-weight:600;font-size:15px;line-height:1.2}
+.sec-tile .cnt{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.sec-tile .top{font-size:12.5px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.back{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:13.5px;color:var(--accent);margin-top:16px}
+
+/* recap */
+.recap{margin-top:8px}
+.recap-hero{padding:18px 0 12px;border-bottom:1px solid var(--line)}
+.recap-hero .eyebrow{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap}
+.recap-hero h2{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.15;margin:8px 0 8px;letter-spacing:-.015em;font-variation-settings:"opsz" 48;text-wrap:balance}
+.recap-hero p{margin:0;font-size:16px;color:var(--ink-2);line-height:1.5}
+.score{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0 4px}
+@media (min-width:480px){.score{grid-template-columns:repeat(6,1fr)}}
+.score div{padding:8px 10px;border-radius:8px;background:var(--surface-2)}
+.score .l{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.score .v{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+.score .c{font-family:var(--mono);font-size:11.5px;font-variant-numeric:tabular-nums}
+.group{margin-top:18px}
+.group h3{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.group h3::after{content:"";flex:1;height:1px;background:var(--line-2)}
+.group ol{margin:0;padding-left:0;list-style:none}
+.group li{padding:8px 0;border-bottom:1px solid var(--line-2);font-size:15px;line-height:1.45;color:var(--ink)}
+.group li:last-child{border-bottom:0}
+.group li .lnk{display:inline-block;margin-left:6px;font-size:12px;color:var(--accent);font-weight:600;white-space:nowrap}
+.watch{margin-top:18px;padding:14px 16px;border-radius:12px;background:var(--accent-soft)}
+.watch h3{margin:0 0 6px;font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.watch ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--ink)}
+.watch li{margin:4px 0}
+.datestrip{display:flex;gap:6px;overflow-x:auto;padding:12px 0 2px;scrollbar-width:none}
+.datestrip::-webkit-scrollbar{display:none}
+.datestrip button{flex:0 0 auto;padding:6px 10px;border-radius:8px;background:var(--surface-2);font-size:12.5px;font-weight:500;color:var(--muted);font-variant-numeric:tabular-nums}
+.datestrip button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.ask{margin-top:22px;padding:14px 16px;border-radius:12px;border:1px dashed var(--line)}
+.ask h3{margin:0 0 4px;font-size:15px;font-weight:600}
+.ask p{margin:0 0 10px;font-size:13px;color:var(--muted)}
+.ask form{display:flex;gap:8px}
+.ask input{flex:1;min-width:0;padding:9px 12px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit}
+.btn{padding:9px 14px;border-radius:9px;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:14px;white-space:nowrap}
+.btn.ghost{background:var(--surface-2);color:var(--ink)}
+.btn:disabled{opacity:.55;cursor:default}
+.answer{margin-top:12px;font-size:14.5px;line-height:1.5;color:var(--ink);white-space:pre-wrap}
+.answer:empty{display:none}
+
+/* markets */
+.mk-group{margin-top:20px}
+.mk-group h3{font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+.mk-row{display:grid;grid-template-columns:1fr 84px 76px 72px;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line-2)}
+.mk-row:last-child{border-bottom:0}
+.mk-row .nm{font-weight:500;font-size:14.5px}
+.mk-row .sym{display:block;font-size:11px;color:var(--faint);font-family:var(--mono)}
+.mk-row .px{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;font-size:14px}
+.mk-row .pc{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;font-size:13px}
+.mk-row .pc small{display:block;font-size:10.5px;color:var(--faint)}
+.mk-row svg{width:72px;height:28px;display:block}
+.mk-head{display:grid;grid-template-columns:1fr 84px 76px 72px;gap:8px;font-size:10.5px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;padding:2px 0 4px}
+.mk-head span{text-align:right}.mk-head span:first-child{text-align:left}
+.note{font-size:12px;color:var(--muted);margin-top:14px}
+
+/* bottom nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.nav-inner{max-width:720px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 4px 8px;font-size:11px;font-weight:500;color:var(--muted)}
+.nav button svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav button[aria-current="page"]{color:var(--accent)}
+.nav .cnt{position:absolute;margin-left:22px;margin-top:-2px;font-family:var(--mono);font-size:9.5px;background:var(--accent);color:var(--accent-ink);border-radius:999px;padding:1px 5px}
+
+/* sheet */
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:40;opacity:0;pointer-events:none;transition:opacity .2s}
+.scrim.open{opacity:1;pointer-events:auto}
+.sheet{visibility:hidden;position:fixed;left:0;right:0;bottom:0;z-index:50;max-width:720px;margin:0 auto;background:var(--sheet);border-radius:18px 18px 0 0;box-shadow:var(--shadow);
+  max-height:88vh;overflow-y:auto;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1),visibility 0s .28s;padding:8px 20px 28px;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+.sheet.open{visibility:visible;transform:translateY(0);transition:transform .28s cubic-bezier(.2,.8,.2,1),visibility 0s}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:4px auto 14px}
+.sheet .meta{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);flex-wrap:wrap}
+.sheet h2{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.2;margin:10px 0 10px;letter-spacing:-.01em;font-variation-settings:"opsz" 36;text-wrap:pretty}
+.sheet .body{font-size:16px;line-height:1.55;color:var(--ink-2)}
+.sheet .whybox{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--accent-soft)}
+.sheet .whybox h4{margin:0 0 4px;font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+.sheet .whybox p{margin:0;font-size:15px;line-height:1.5;color:var(--ink)}
+.sheet .also{margin-top:12px;font-size:12.5px;color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.actions a.btn{text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.explain{margin-top:14px}
+.explain .answer{padding:12px 14px;border-radius:10px;background:var(--surface-2);font-size:14.5px}
+.explain .hint{font-size:12px;color:var(--muted);margin-top:6px}
+@media (min-width:740px){
+  .sheet{bottom:auto;top:6vh;border-radius:16px;max-height:86vh}
+  .sheet.open{transform:none}
+}
+@media (prefers-reduced-motion:reduce){.sheet,.scrim{transition:none}}
+.toast{position:fixed;left:50%;bottom:92px;transform:translateX(-50%);background:var(--ink);color:var(--surface);padding:8px 14px;border-radius:999px;font-size:13px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+</style>
+
+</head>
+<body>
+<div class="app">
+  <header class="mast">
+    <div class="mast-row">
+      <div class="brand"><h1>Bazaar Brief</h1><span class="date" id="mastDate"></span></div>
+      <div class="fresh off" id="fresh"><span class="dot"></span><span id="freshText">Connecting…</span></div>
+    </div>
+    <div class="rail" id="rail" aria-label="Market ticker"></div>
+  </header>
+
+  <main>
+    <!-- TODAY -->
+    <section class="view active" id="view-today" aria-labelledby="todayTitle">
+      <div id="briefCard"></div>
+      <div class="toolbar">
+        <div class="seg" role="group" aria-label="Region">
+          <button data-region="all" aria-pressed="true">All</button>
+          <button data-region="india" aria-pressed="false">India</button>
+          <button data-region="world" aria-pressed="false">World</button>
+        </div>
+        <div class="seg" role="group" aria-label="Order">
+          <button data-sort="top" aria-pressed="true">Top</button>
+          <button data-sort="latest" aria-pressed="false">Latest</button>
+        </div>
+        <label class="search"><span aria-hidden="true">⌕</span><input id="q" type="search" placeholder="Search today's stories" autocomplete="off"></label>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Sections"></div>
+      <div class="section-head" style="margin-top:6px"><h2 id="todayTitle">Top stories</h2><span class="sub" id="todayCount"></span></div>
+      <div class="stories" id="todayList"></div>
+      <button class="more-btn" id="moreBtn" hidden>Show more</button>
+    </section>
+
+    <!-- SECTIONS -->
+    <section class="view" id="view-sections" aria-labelledby="secTitle">
+      <div id="secHome">
+        <div class="section-head"><h2 id="secTitle">Browse by field</h2><span class="sub" id="secTotal"></span></div>
+        <div class="sec-grid" id="secGrid"></div>
+      </div>
+      <div id="secDetail" hidden>
+        <button class="back" id="secBack">← All fields</button>
+        <div class="section-head"><h2 id="secDetailTitle"></h2><span class="sub" id="secDetailCount"></span></div>
+        <div class="stories" id="secList"></div>
+      </div>
+    </section>
+
+    <!-- RECAP -->
+    <section class="view" id="view-recap" aria-labelledby="recapTitle">
+      <div class="toolbar" style="margin-top:14px">
+        <div class="seg" role="group" aria-label="Recap span">
+          <button data-span="day" aria-pressed="true">Recap of the day</button>
+          <button data-span="week" aria-pressed="false">Recap of the week</button>
+        </div>
+      </div>
+      <h2 id="recapTitle" class="visually-hidden">Recap</h2>
+      <div id="recapDay"></div>
+      <div id="recapWeek" hidden></div>
+      <div class="ask" id="askBox" hidden>
+        <h3>Ask the desk</h3>
+        <p>Ask anything about today's stories, for example "what moved the rupee?" or "should I care about the ECB hike?". Uses your Claude account.</p>
+        <form id="askForm"><input id="askInput" type="text" placeholder="Your question" autocomplete="off"><button class="btn" id="askBtn" type="submit">Ask</button></form>
+        <div class="answer" id="askAnswer"></div>
+      </div>
+    </section>
+
+    <!-- MARKETS -->
+    <section class="view" id="view-markets" aria-labelledby="mkTitle">
+      <div class="section-head"><h2 id="mkTitle">Markets</h2><span class="sub" id="mkAsOf"></span></div>
+      <div id="mkBody"></div>
+      <p class="note">Index levels from exchange data via Yahoo Finance, refreshed with each desk update. 5D and 1M are moves over the last five and roughly twenty-two trading sessions. Sparkline shows the last twelve sessions.</p>
+    </section>
+
+    <!-- SAVED -->
+    <section class="view" id="view-saved" aria-labelledby="savedTitle">
+      <div class="section-head"><h2 id="savedTitle">Saved for later</h2><span class="sub" id="savedCount"></span></div>
+      <div class="stories" id="savedList"></div>
+    </section>
+  </main>
+</div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <button data-view="today" aria-current="page"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/></svg>Today</button>
+    <button data-view="sections"><svg viewBox="0 0 24 24"><path d="M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z"/></svg>Fields</button>
+    <button data-view="recap"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Recap</button>
+    <button data-view="markets"><svg viewBox="0 0 24 24"><path d="M4 18l5-6 4 3 7-9"/><path d="M4 21h16"/></svg>Markets</button>
+    <button data-view="saved"><svg viewBox="0 0 24 24"><path d="M7 3h10v18l-5-4-5 4z"/></svg>Saved<span class="cnt" id="savedBadge" hidden></span></button>
+  </div>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" tabindex="-1">
+  <div class="grab"></div>
+  <div id="sheetBody"></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+"use strict";
+const SECTIONS = [
+  {id:"stocks", label:"Stocks", short:"Stocks", h:212, blurb:"Sensex, Nifty, IPOs, FII flows"},
+  {id:"global-markets", label:"Global Markets", short:"Global", h:262, blurb:"Wall Street, Asia, Europe"},
+  {id:"economy", label:"Economy & GDP", short:"Economy", h:158, blurb:"Growth, jobs, trade, fiscal"},
+  {id:"inflation", label:"Inflation & Prices", short:"Inflation", h:18, blurb:"CPI, WPI, food and fuel"},
+  {id:"central-banks", label:"RBI & Central Banks", short:"Central banks", h:286, blurb:"Rates, liquidity, Fed, ECB"},
+  {id:"bonds", label:"Bonds & Rates", short:"Bonds", h:190, blurb:"G-secs, yields, treasuries"},
+  {id:"fx-commodities", label:"Currency & Commodities", short:"Rupee & commodities", h:38, blurb:"Rupee, dollar, crude, gold"},
+  {id:"corporate", label:"Corporate & Earnings", short:"Corporate", h:230, blurb:"Results, deals, boardrooms"},
+  {id:"policy", label:"Policy & Government", short:"Policy", h:330, blurb:"Budget, taxes, SEBI, regulation"},
+  {id:"geopolitics", label:"Geopolitics & Trade", short:"Geopolitics", h:0, blurb:"Tariffs, sanctions, conflict"},
+  {id:"banking", label:"Banking & Finance", short:"Banking", h:120, blurb:"Banks, NBFCs, credit, fintech"},
+  {id:"crypto", label:"Crypto", short:"Crypto", h:48, blurb:"Bitcoin, stablecoins, regulation"},
+];
+const SEC = Object.fromEntries(SECTIONS.map(s=>[s.id,s]));
+const $ = (id)=>document.getElementById(id);
+const esc = (s)=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+// ---------- persisted per-device state ----------
+const store = {
+  get(k, d){ try{ const v = localStorage.getItem("bb:"+k); return v==null?d:JSON.parse(v);}catch(e){ return d; } },
+  set(k, v){ try{ localStorage.setItem("bb:"+k, JSON.stringify(v)); }catch(e){} }
+};
+const state = {
+  view: store.get("view","today"), region: store.get("region","all"), section: "all", q:"", limit: 30, sort: store.get("sort","top"),
+  lastSeen: store.get("lastSeen", 0), sessionStart: Date.now(),
+  read: new Set(store.get("read",[])), saved: store.get("saved",[]),
+  feed: null, markets: null, dailies: [], weeklies: [], dayIdx: 0, span: "day", secOpen: null,
+  db: null, sample: null, sampleTried:false
+};
+const byId = ()=> state.feed ? Object.fromEntries(state.feed.articles.map(a=>[a.id,a])) : {};
+
+// ---------- helpers ----------
+const IST = "Asia/Kolkata";
+function fmtDate(d, opts){ return new Intl.DateTimeFormat("en-IN", Object.assign({timeZone:IST}, opts)).format(d); }
+function ago(iso){
+  const t = Date.parse(iso); if(!t) return "";
+  const m = Math.round((Date.now()-t)/60000);
+  if(m<1) return "just now"; if(m<60) return m+"m ago"; const h=Math.round(m/60); if(h<24) return h+"h ago";
+  const d=Math.round(h/24); return d===1?"yesterday":d+"d ago";
+}
+function num(v, dp){ if(v==null||isNaN(v)) return "–"; const abs=Math.abs(v);
+  const d = dp!=null?dp:(abs>=1000?0:abs>=100?1:2);
+  return new Intl.NumberFormat("en-IN",{minimumFractionDigits:d,maximumFractionDigits:d}).format(v); }
+function pct(v){ if(v==null||isNaN(v)) return "–"; return (v>0?"+":"")+v.toFixed(2)+"%"; }
+function cls(v){ return v>0.0001?"up":v<-0.0001?"down":"flat"; }
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.classList.add("show"); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove("show"),1800); }
+function timeOfDayLabel(){ const h = Number(new Intl.DateTimeFormat("en-GB",{timeZone:IST,hour:"numeric",hour12:false}).format(new Date())); return h<11?"Morning brief":h<16?"Midday check":"Evening wrap"; }
+
+$("mastDate").textContent = fmtDate(new Date(), {weekday:"short", day:"numeric", month:"short"});
+
+// ---------- freshness ----------
+function renderFresh(){
+  const el=$("fresh"), tx=$("freshText");
+  if(!state.feed){ el.className="fresh off"; tx.textContent = state.dbResolved ? "Offline" : "Loading…"; return; }
+  const ageH = (Date.now()-Date.parse(state.feed.updatedAt))/3600000;
+  el.className = "fresh"+(ageH>2.5?" stale":"");
+  tx.textContent = "Updated "+ago(state.feed.updatedAt);
+}
+setInterval(renderFresh, 60000);
+
+// ---------- ticker rail ----------
+const RAIL_ORDER = ["^NSEI","^BSESN","^NSEBANK","INR=X","^TNX","BZ=F","GC=F","^GSPC","^IXIC","^N225","BTC-USD","^INDIAVIX","DX-Y.NYB"];
+function renderRail(){
+  const rail=$("rail");
+  if(!state.markets){ rail.innerHTML = RAIL_ORDER.slice(0,6).map(()=>'<div class="tick skel"><span class="l">Nifty 50</span><span class="v">00,000.00</span><span class="c">+0.00%</span></div>').join(""); return; }
+  const qs = Object.fromEntries(state.markets.quotes.map(q=>[q.symbol,q]));
+  rail.innerHTML = RAIL_ORDER.map(s=>qs[s]).filter(q=>q&&!q.error).map(q=>{
+    const isYield = q.kind==="yield";
+    const v = isYield ? q.price.toFixed(3)+"%" : num(q.price);
+    const c = isYield ? ((q.change>0?"+":"")+(q.change*100).toFixed(0)+" bp") : pct(q.changePct);
+    return `<button class="tick" data-go="markets" title="${esc(q.label)}"><span class="l">${esc(q.label)}</span><span class="v">${v}</span><span class="c ${cls(q.change)}">${c}</span></button>`;
+  }).join("");
+}
+
+// ---------- story rendering ----------
+function tagHtml(secId){ const s=SEC[secId]||{label:secId,h:200}; return `<span class="tag" style="--h:${s.h}">${esc(s.label)}</span>`; }
+function storyHtml(a, lead){
+  const isRead = state.read.has(a.id), isSaved = state.saved.includes(a.id);
+  const isNew = !isRead && state.lastSeen && Date.parse(a.publishedAt) > state.lastSeen;
+  return `<button class="story${isRead?" read":""}${lead?" lead":""}" data-open="${esc(a.id)}" aria-haspopup="dialog">
+    <div class="meta">${tagHtml(a.section)}<span class="region">${a.region==="india"?"India":"World"}</span><span>${esc(a.source)}</span><span>·</span><span>${ago(a.publishedAt)}</span>${isNew?'<span class="new">New</span>':""}</div>
+    <h3>${esc(a.title)}</h3>
+    ${isSaved?'<span class="saved-mark" aria-label="Saved">■</span>':""}
+    ${a.why?`<div class="why">${esc(a.why)}</div>`:(a.summary?`<div class="sum">${esc(a.summary)}</div>`:"")}
+  </button>`;
+}
+function skeletonList(n){ let h=""; for(let i=0;i<n;i++) h+=`<div class="story"><div class="skel-line w60"></div><div class="skel-line tall w90"></div><div class="skel-line"></div></div>`; return `<div class="skeleton">${h}</div>`; }
+
+function filteredToday(){
+  let list = state.feed.articles.slice();
+  if(state.region!=="all") list = list.filter(a=>a.region===state.region);
+  if(state.section!=="all") list = list.filter(a=>a.section===state.section);
+  if(state.q){ const q=state.q.toLowerCase(); list = list.filter(a=>(a.title+" "+(a.summary||"")+" "+a.source).toLowerCase().includes(q)); }
+  if(state.sort==="latest") list.sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt));
+  return list;
+}
+function renderChips(){
+  const counts = {};
+  if(state.feed) for(const a of state.feed.articles){ if(state.region==="all"||a.region===state.region) counts[a.section]=(counts[a.section]||0)+1; }
+  const all = state.feed ? Object.values(counts).reduce((x,y)=>x+y,0) : 0;
+  $("chips").innerHTML = [`<button class="chip" data-sec="all" aria-pressed="${state.section==="all"}">All <span class="n">${all||""}</span></button>`]
+    .concat(SECTIONS.map(s=>`<button class="chip" data-sec="${s.id}" aria-pressed="${state.section===s.id}" style="--h:${s.h}"><span class="sw"></span>${esc(s.short)} <span class="n">${counts[s.id]||""}</span></button>`)).join("");
+}
+function renderToday(){
+  renderChips();
+  const list=$("todayList");
+  if(!state.feed){ list.innerHTML = skeletonList(6); $("todayCount").textContent=""; $("moreBtn").hidden=true; return; }
+  const items = filteredToday();
+  const filtered = state.section!=="all" || state.region!=="all" || state.q;
+  const base = state.sort==="latest" ? "Latest" : "Top stories";
+  $("todayTitle").textContent = state.q ? "Search results" : state.section!=="all" ? SEC[state.section].label : (state.region==="india"?base+" · India":state.region==="world"?base+" · World":base);
+  const newCount = state.lastSeen ? items.filter(a=>Date.parse(a.publishedAt)>state.lastSeen && !state.read.has(a.id)).length : 0;
+  $("todayCount").textContent = items.length+" stor"+(items.length===1?"y":"ies")+(newCount?" · "+newCount+" new since your last visit":"");
+  if(!items.length){ list.innerHTML = `<div class="empty"><strong>Nothing here yet</strong>${filtered?"Try another field or region.":"The desk has not published today's stories yet."}</div>`; $("moreBtn").hidden=true; return; }
+  const shown = items.slice(0, state.limit);
+  list.innerHTML = shown.map((a,i)=>storyHtml(a, i===0 && !state.q)).join("");
+  $("moreBtn").hidden = items.length<=state.limit;
+}
+function renderBrief(){
+  const box=$("briefCard");
+  const d = state.dailies[0];
+  if(!d){ box.innerHTML=""; return; }
+  const bullets = [];
+  for(const g of (d.groups||[])) for(const it of g.items){ if(bullets.length<4) bullets.push(it.text); }
+  box.innerHTML = `<div class="brief">
+    <div class="eyebrow"><span>${esc(d.sessionLabel||"Daily brief")}</span><span>${esc(d.dateLabel||d.date)} · ${d.readMinutes||3} min read</span></div>
+    <h2>${esc(d.title)}</h2>
+    ${d.standfirst?`<p>${esc(d.standfirst)}</p>`:""}
+    <ul>${bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>
+    <button class="more" data-go="recap">Read the full recap →</button>
+  </div>`;
+}
+
+// ---------- sections view ----------
+function renderSections(){
+  const grid=$("secGrid");
+  if(!state.feed){ grid.innerHTML = SECTIONS.map(s=>`<div class="sec-tile" style="--h:${s.h}"><span class="name">${esc(s.label)}</span><span class="cnt">…</span><span class="top">${esc(s.blurb)}</span></div>`).join(""); return; }
+  const by={}; for(const a of state.feed.articles){ (by[a.section]=by[a.section]||[]).push(a); }
+  $("secTotal").textContent = state.feed.articles.length+" stories today";
+  grid.innerHTML = SECTIONS.map(s=>{ const l=by[s.id]||[]; return `<button class="sec-tile" style="--h:${s.h}" data-secopen="${s.id}"><span class="name">${esc(s.label)}</span><span class="cnt">${l.length} stor${l.length===1?"y":"ies"}</span><span class="top">${l[0]?esc(l[0].title):esc(s.blurb)}</span></button>`; }).join("");
+  if(state.secOpen){
+    const l=by[state.secOpen]||[];
+    $("secDetailTitle").textContent = SEC[state.secOpen].label; $("secDetailCount").textContent = l.length+" stories";
+    $("secList").innerHTML = l.length ? l.map(a=>storyHtml(a,false)).join("") : `<div class="empty"><strong>Quiet field</strong>No stories filed here in the last day and a half.</div>`;
+  }
+  $("secHome").hidden = !!state.secOpen; $("secDetail").hidden = !state.secOpen;
+}
+
+// ---------- recap ----------
+function scoreboardHtml(sb){
+  if(!sb||!sb.length) return "";
+  return `<div class="score">${sb.map(x=>`<div><div class="l">${esc(x.label)}</div><div class="v">${esc(x.value)}</div><div class="c ${cls(x.changePct)}">${x.changePct!=null?pct(x.changePct):esc(x.change||"")}</div></div>`).join("")}</div>`;
+}
+function groupsHtml(groups){
+  const ids = byId();
+  return (groups||[]).map(g=>`<div class="group"><h3>${esc(g.label)}</h3><ol>${g.items.map(it=>{
+    const link = (it.ids||[]).find(i=>ids[i]);
+    return `<li>${esc(it.text)}${link?`<button class="lnk" data-open="${esc(link)}">Open story</button>`:""}</li>`; }).join("")}</ol></div>`).join("");
+}
+function renderRecapDay(){
+  const box=$("recapDay");
+  if(!state.dailies.length){ box.innerHTML = state.feed ? `<div class="empty"><strong>No recap yet</strong>The desk writes the recap of the day at the close and again in the evening.</div>` : skeletonList(3); return; }
+  const d = state.dailies[Math.min(state.dayIdx, state.dailies.length-1)];
+  box.innerHTML = `
+    <div class="datestrip">${state.dailies.map((x,i)=>`<button aria-pressed="${i===state.dayIdx}" data-day="${i}">${esc(x.dateLabel||x.date)}</button>`).join("")}</div>
+    <div class="recap">
+      <div class="recap-hero"><div class="eyebrow"><span>${esc(d.sessionLabel||"Recap of the day")} · ${esc(d.dateLabel||d.date)}</span><span>${d.readMinutes||3} min read</span></div>
+      <h2>${esc(d.title)}</h2>${d.standfirst?`<p>${esc(d.standfirst)}</p>`:""}${scoreboardHtml(d.scoreboard)}</div>
+      ${groupsHtml(d.groups)}
+      ${d.watch&&d.watch.length?`<div class="watch"><h3>What to watch next</h3><ul>${d.watch.map(w=>`<li>${esc(w)}</li>`).join("")}</ul></div>`:""}
+    </div>`;
+}
+function renderRecapWeek(){
+  const box=$("recapWeek");
+  if(!state.weeklies.length){ box.innerHTML = `<div class="empty"><strong>No weekly recap yet</strong>The recap of the week is written every Friday evening after markets close.</div>`; return; }
+  const w = state.weeklies[0];
+  box.innerHTML = `<div class="recap">
+    <div class="recap-hero"><div class="eyebrow"><span>Recap of the week · ${esc(w.rangeLabel||w.week)}</span><span>${w.readMinutes||4} min read</span></div>
+    <h2>${esc(w.title)}</h2>${w.standfirst?`<p>${esc(w.standfirst)}</p>`:""}${scoreboardHtml(w.scoreboard)}</div>
+    ${groupsHtml(w.groups)}
+    ${w.watch&&w.watch.length?`<div class="watch"><h3>The week ahead</h3><ul>${w.watch.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:""}
+  </div>`;
+}
+function renderRecap(){ renderRecapDay(); renderRecapWeek(); $("recapDay").hidden = state.span!=="day"; $("recapWeek").hidden = state.span!=="week"; }
+
+// ---------- markets ----------
+function spark(vals){
+  if(!vals||vals.length<2) return "";
+  const w=72,h=28,p=2, min=Math.min(...vals), max=Math.max(...vals), rng=(max-min)||1;
+  const pts = vals.map((v,i)=>[p+i*(w-2*p)/(vals.length-1), h-p-(v-min)/rng*(h-2*p)]);
+  const d = pts.map((q,i)=>(i?"L":"M")+q[0].toFixed(1)+" "+q[1].toFixed(1)).join(" ");
+  const up = vals[vals.length-1]>=vals[0];
+  const col = up?"var(--gain)":"var(--loss)";
+  const area = d+` L${pts[pts.length-1][0].toFixed(1)} ${h} L${pts[0][0].toFixed(1)} ${h} Z`;
+  const last = pts[pts.length-1];
+  return `<svg viewBox="0 0 ${w} ${h}" aria-hidden="true"><path d="${area}" fill="${col}" opacity=".12"/><path d="${d}" fill="none" stroke="${col}" stroke-width="1.5" stroke-linejoin="round"/><circle cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="2" fill="${col}"/></svg>`;
+}
+function renderMarkets(){
+  const box=$("mkBody");
+  if(!state.markets){ box.innerHTML = skeletonList(5); $("mkAsOf").textContent=""; return; }
+  $("mkAsOf").textContent = "as of "+ago(state.markets.updatedAt);
+  const groups = ["India","FX","Rates","Commodities","World","Crypto"];
+  box.innerHTML = groups.map(g=>{
+    const rows = state.markets.quotes.filter(q=>q.group===g && !q.error);
+    if(!rows.length) return "";
+    return `<div class="mk-group"><h3>${g==="FX"?"Currencies":g==="India"?"India":g}</h3><div class="mk-head"><span>Instrument</span><span>Last</span><span>1D</span><span>Trend</span></div>${rows.map(q=>{
+      const isY = q.kind==="yield";
+      return `<div class="mk-row"><div class="nm">${esc(q.label)}<span class="sym">${esc(q.symbol)}${q.currency&&!isY?" · "+esc(q.currency):""}</span></div>
+        <div class="px">${isY?q.price.toFixed(3)+"%":num(q.price)}</div>
+        <div class="pc ${cls(q.change)}">${isY?((q.change>0?"+":"")+(q.change*100).toFixed(0)+" bp"):pct(q.changePct)}<small>5D ${pct(q.weekPct)} · 1M ${pct(q.monthPct)}</small></div>
+        <div>${spark(q.spark)}</div></div>`; }).join("")}</div>`;
+  }).join("");
+}
+
+// ---------- saved ----------
+function renderSaved(){
+  const ids = byId(); const list = state.saved.map(i=>ids[i]).filter(Boolean);
+  $("savedCount").textContent = list.length ? list.length+" saved" : "";
+  $("savedBadge").hidden = !state.saved.length; $("savedBadge").textContent = state.saved.length;
+  $("savedList").innerHTML = list.length ? list.map(a=>storyHtml(a,false)).join("") : `<div class="empty"><strong>Nothing saved</strong>Open a story and tap Save to keep it here${state.saved.length?" (saved stories older than a day and a half drop off when the desk refreshes)":""}.</div>`;
+}
+
+// ---------- sheet ----------
+let lastFocus=null;
+function openStory(id){
+  const a = byId()[id]; if(!a) return;
+  state.read.add(id); store.set("read", Array.from(state.read).slice(-600));
+  const isSaved = state.saved.includes(id);
+  const also = (a.sources||[]).filter(s=>s!==a.source);
+  $("sheetBody").innerHTML = `
+    <div class="meta">${tagHtml(a.section)}<span class="region">${a.region==="india"?"India":"World"}</span><span>${esc(a.source)}</span><span>·</span><span>${esc(fmtDate(new Date(a.publishedAt),{day:"numeric",month:"short",hour:"numeric",minute:"2-digit"}))} IST</span></div>
+    <h2 id="sheetTitle">${esc(a.title)}</h2>
+    ${a.summary?`<div class="body">${esc(a.summary)}</div>`:`<div class="body" style="color:var(--muted)">No summary available for this story. Open the source for the full report.</div>`}
+    ${a.why?`<div class="whybox"><h4>Why it matters</h4><p>${esc(a.why)}</p></div>`:""}
+    ${also.length?`<div class="also">Also covered by ${esc(also.join(", "))}</div>`:""}
+    <div class="actions">
+      <a class="btn" href="${esc(a.url)}" target="_blank" rel="noopener noreferrer">Read at ${esc(a.source)} ↗</a>
+      <button class="btn ghost" data-save="${esc(id)}">${isSaved?"Unsave":"Save"}</button>
+      <button class="btn ghost" data-explain="${esc(id)}" ${state.sample===null&&state.sampleTried?"hidden":""}>Explain this</button>
+    </div>
+    <div class="explain" id="explainBox"></div>`;
+  lastFocus=document.activeElement;
+  $("scrim").classList.add("open"); $("sheet").classList.add("open"); $("sheet").scrollTop=0; $("sheet").focus();
+  document.body.style.overflow="hidden";
+  renderAllLists();
+}
+function closeSheet(){ $("scrim").classList.remove("open"); $("sheet").classList.remove("open"); document.body.style.overflow=""; if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
+function toggleSave(id){
+  const i = state.saved.indexOf(id);
+  if(i>=0){ state.saved.splice(i,1); toast("Removed from saved"); } else { state.saved.unshift(id); toast("Saved for later"); }
+  store.set("saved", state.saved);
+  const b = $("sheet").querySelector("[data-save]"); if(b) b.textContent = state.saved.includes(id)?"Unsave":"Save";
+  renderAllLists();
+}
+async function explain(id){
+  const a = byId()[id]; const box=$("explainBox"); const btn=$("sheet").querySelector("[data-explain]");
+  const s = await getSample();
+  if(!s){ box.innerHTML=`<div class="hint">Explanations need this page open inside Claude.</div>`; return; }
+  btn.disabled=true; box.innerHTML=`<div class="answer">Thinking…</div>`;
+  const ctx = state.markets ? state.markets.quotes.filter(q=>!q.error&&["^NSEI","INR=X","BZ=F","^TNX"].includes(q.symbol)).map(q=>`${q.label} ${q.price} (${pct(q.changePct)})`).join("; ") : "";
+  const prompt = `You are a calm markets editor at an Indian business daily writing for a busy reader with no time. Explain this news story in plain English in exactly three short labelled lines: "What happened:", "Why it matters for India / an Indian investor:", "What to watch:". No preamble, no markdown symbols, under 90 words total.\n\nHeadline: ${a.title}\nSummary: ${a.summary||"(none)"}\nSource: ${a.source}\nSection: ${(SEC[a.section]||{}).label}\n${a.why?"Desk note: "+a.why+"\n":""}${ctx?"Market context now: "+ctx:""}`;
+  try{
+    const r = await s(prompt, {modelTier:"quick", onText:({text})=>{ box.querySelector(".answer").textContent=text; }});
+    box.querySelector(".answer").textContent = r.text;
+  }catch(e){
+    box.innerHTML = `<div class="hint">${e.code==="not_granted"?"Explanations are off for this visit.":e.code==="rate_limited"?"Too many requests right now. Try again in a minute.":"Could not get an explanation right now."}</div>`;
+    if(e.code==="not_granted"){ state.sample=null; state.sampleTried=true; }
+  } finally { btn.disabled=false; }
+}
+async function getSample(){
+  if(state.sample||state.sampleTried) return state.sample;
+  state.sampleTried=true;
+  try{ state.sample = window.claude && window.claude.use ? await window.claude.use("sample") : null; }catch(e){ state.sample=null; }
+  return state.sample;
+}
+async function askDesk(q){
+  const s = await getSample(); const out=$("askAnswer"), btn=$("askBtn");
+  if(!s){ out.textContent="Asking needs this page open inside Claude."; return; }
+  const heads = (state.feed?state.feed.articles.slice(0,45):[]).map(a=>`- [${(SEC[a.section]||{}).label}] ${a.title}${a.summary?" — "+a.summary.slice(0,160):""}`).join("\n");
+  const d = state.dailies[0];
+  const recap = d ? `Today's recap "${d.title}": ${(d.groups||[]).flatMap(g=>g.items.map(i=>i.text)).join(" ")}` : "";
+  const mk = state.markets ? state.markets.quotes.filter(q=>!q.error).map(q=>`${q.label} ${q.price} ${pct(q.changePct)}`).join("; ") : "";
+  btn.disabled=true; out.textContent="Thinking…";
+  try{
+    const r = await s(`You are the desk editor of an Indian financial news app. Answer the reader's question using ONLY the material below. Be direct, plain English, at most 120 words, no markdown symbols. If the material does not cover it, say so in one line.\n\nQuestion: ${q}\n\n${recap}\n\nMarkets: ${mk}\n\nToday's headlines:\n${heads}`, {onText:({text})=>{out.textContent=text;}});
+    out.textContent=r.text;
+  }catch(e){ out.textContent = e.code==="not_granted"?"Asking is off for this visit.":e.code==="rate_limited"?"Too many questions right now. Try again shortly.":"Could not answer right now."; }
+  finally{ btn.disabled=false; }
+}
+
+// ---------- navigation ----------
+function showView(v){
+  state.view=v; store.set("view",v);
+  document.querySelectorAll(".view").forEach(el=>el.classList.toggle("active", el.id==="view-"+v));
+  document.querySelectorAll(".nav button").forEach(b=>{ if(b.dataset.view===v) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
+  window.scrollTo({top:0});
+}
+function renderAllLists(){ renderToday(); renderSections(); renderSaved(); renderBrief(); }
+function renderAll(){ renderFresh(); renderRail(); renderAllLists(); renderRecap(); renderMarkets(); }
+
+document.addEventListener("click", (e)=>{
+  const t = e.target.closest("button, a"); if(!t) return;
+  if(t.dataset.view){ showView(t.dataset.view); return; }
+  if(t.dataset.go){ closeSheet(); showView(t.dataset.go); return; }
+  if(t.dataset.open){ openStory(t.dataset.open); return; }
+  if(t.dataset.save){ toggleSave(t.dataset.save); return; }
+  if(t.dataset.explain){ explain(t.dataset.explain); return; }
+  if(t.dataset.region){ state.region=t.dataset.region; store.set("region",state.region); state.limit=30;
+    document.querySelectorAll("[data-region]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.region===state.region)); renderToday(); return; }
+  if(t.dataset.sec){ state.section=t.dataset.sec; state.limit=30; renderToday(); return; }
+  if(t.dataset.sort){ state.sort=t.dataset.sort; store.set("sort",state.sort); state.limit=30;
+    document.querySelectorAll("[data-sort]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.sort===state.sort)); renderToday(); return; }
+  if(t.dataset.secopen){ state.secOpen=t.dataset.secopen; renderSections(); window.scrollTo({top:0}); return; }
+  if(t.id==="secBack"){ state.secOpen=null; renderSections(); return; }
+  if(t.dataset.span){ state.span=t.dataset.span; document.querySelectorAll("[data-span]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.span===state.span)); renderRecap(); return; }
+  if(t.dataset.day!=null){ state.dayIdx=Number(t.dataset.day); renderRecapDay(); return; }
+  if(t.id==="moreBtn"){ state.limit+=30; renderToday(); return; }
+});
+$("scrim").addEventListener("click", closeSheet);
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && $("sheet").classList.contains("open")) closeSheet(); });
+$("q").addEventListener("input", e=>{ state.q=e.target.value.trim(); state.limit=30; renderToday(); });
+$("askForm").addEventListener("submit", e=>{ e.preventDefault(); const q=$("askInput").value.trim(); if(q) askDesk(q); });
+document.querySelectorAll("[data-region]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.region===state.region));
+document.querySelectorAll("[data-sort]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.sort===state.sort));
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="hidden") store.set("lastSeen", Date.now()); });
+window.addEventListener("pagehide", ()=>store.set("lastSeen", Date.now()));
+showView(state.view);
+renderAll();
+
+// ---------- live data (static JSON published by the desk) ----------
+state.sampleTried = true; state.sample = null;  // no Claude runtime outside claude.ai: hide Explain/Ask
+const DATA = "data/";
+let loadedOnce = false;
+async function getJson(name){ const r = await fetch(DATA+name+"?t="+Math.floor(Date.now()/60000), {cache:"no-store"}); if(!r.ok) throw new Error(name+" "+r.status); return r.json(); }
+async function load(){
+  try{
+    const [feed, markets, archive] = await Promise.all([getJson("feed.json"), getJson("markets.json"), getJson("archive.json").catch(()=>({dailies:[],weeklies:[]}))]);
+    state.feed = feed; state.markets = markets;
+    state.dailies = (archive.dailies||[]).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,8);
+    state.weeklies = (archive.weeklies||[]).slice().sort((a,b)=>(b.week||"").localeCompare(a.week||"")).slice(0,4);
+    state.dayIdx = Math.min(state.dayIdx, Math.max(0, state.dailies.length-1));
+    state.dbResolved = true; loadedOnce = true;
+    renderAll();
+  }catch(e){
+    console.warn("load failed", e);
+    if(!loadedOnce){ state.dbResolved = true; renderFresh();
+      $("todayList").innerHTML = `<div class="empty"><strong>Could not load the desk</strong>Check your connection and pull to refresh. The desk publishes a new edition every hour.</div>`; }
+  }
+}
+load();
+setInterval(load, 10*60*1000);
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible" && loadedOnce) load(); });
+if("serviceWorker" in navigator){ window.addEventListener("load", ()=>{ navigator.serviceWorker.register("sw.js").catch(()=>{}); }); }
+})();
+</script>
+
+</body>
+</html>
