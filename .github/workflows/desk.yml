@@ -28,6 +28,11 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+      - name: Enable GitHub Pages if needed
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+        continue-on-error: true
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
