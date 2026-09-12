@@ -10,8 +10,14 @@ Usage: python3 build.py --mode wire|edition|weekend [--site-url https://.../] [-
   weekend  weekend edition: edit, recap of the day, recap of the week
 
 The previous feed and the recap archive are fetched from the live site so that
-notes and history survive between stateless CI runs. Without ANTHROPIC_API_KEY
-the editorial steps are skipped and the run behaves like a wire refresh.
+notes and history survive between stateless CI runs.
+
+Editorial content comes from one of two places:
+  * ANTHROPIC_API_KEY set  -> editor.py calls the Claude API (pay-as-you-go)
+  * otherwise              -> the editorial/ folder in this repo, which the
+                              claude.ai Routines (covered by a Claude subscription)
+                              push after each edition: editorial/feed.json,
+                              editorial/dailies/<date>.json, editorial/weeklies/<week>.json
 """
 import argparse
 import datetime as dt
@@ -34,6 +40,68 @@ def fetch_json(url):
     except Exception as e:
         print("fetch skipped:", url, repr(e))
         return None
+
+
+def load_repo_editorial():
+    """Editorial documents pushed into the repo by the claude.ai Routines."""
+    ed = os.path.join(HERE, "editorial")
+    feed = None
+    fp = os.path.join(ed, "feed.json")
+    if os.path.exists(fp):
+        try:
+            feed = json.load(open(fp))
+        except Exception as e:
+            print("editorial/feed.json unreadable:", repr(e))
+    docs = {"dailies": [], "weeklies": []}
+    for kind in ("dailies", "weeklies"):
+        d = os.path.join(ed, kind)
+        if os.path.isdir(d):
+            for name in sorted(os.listdir(d)):
+                if name.endswith(".json"):
+                    try:
+                        docs[kind].append(json.load(open(os.path.join(d, name))))
+                    except Exception as e:
+                        print("skipping", name, repr(e))
+    return feed, docs
+
+
+def apply_repo_editorial(feed, ed_feed, now_utc):
+    """Carry why/section/region from the Routine-edited feed and, if it is recent, its story order."""
+    if not ed_feed or not ed_feed.get("articles"):
+        return feed, False
+    try:
+        age_h = (now_utc - dt.datetime.fromisoformat(ed_feed["updatedAt"].replace("Z", "+00:00"))).total_seconds() / 3600
+    except Exception:
+        age_h = 999
+    if age_h > 36:
+        return feed, False
+    ed = {a["id"]: a for a in ed_feed["articles"]}
+    hits = 0
+    for a in feed["articles"]:
+        o = ed.get(a["id"])
+        if o:
+            hits += 1
+            for k in ("why", "section", "region"):
+                if o.get(k):
+                    a[k] = o[k]
+    if age_h <= 4:  # a fresh edition: keep the editor's order for the top of the page
+        order = {a["id"]: i for i, a in enumerate(ed_feed["articles"][:40])}
+        feed["articles"].sort(key=lambda a: (order.get(a["id"], 10 ** 6), -a.get("score", 0)))
+        feed["sessionLabel"] = ed_feed.get("sessionLabel") or feed["sessionLabel"]
+    print("repo editorial: notes carried for %d stories (edition %.1fh old)" % (hits, age_h))
+    return feed, hits > 0
+
+
+def merge_docs(existing, incoming, key):
+    by = {d.get(key): d for d in existing if d.get(key)}
+    for d in incoming:
+        k = d.get(key)
+        if not k:
+            continue
+        cur = by.get(k)
+        if cur is None or (d.get("updatedAt", "") >= cur.get("updatedAt", "")):
+            by[k] = d
+    return sorted(by.values(), key=lambda d: d.get(key, ""), reverse=True)
 
 
 def label_for(now_ist, mode):
@@ -88,11 +156,17 @@ def main():
     status = {"mode": args.mode, "builtAt": now_utc.isoformat().replace("+00:00", "Z"), "label": label,
               "stories": len(feed["articles"]), "edited": False, "usage": {}}
 
-    # 3. Editorial layer
+    # 3. Editorial layer: repo files pushed by the claude.ai Routines (always), then the API when a key exists
     edited = False
+    ed_feed, ed_docs = load_repo_editorial()
+    feed, from_repo = apply_repo_editorial(feed, ed_feed, now_utc)
+    archive["dailies"] = merge_docs(archive["dailies"], ed_docs["dailies"], "date")[:14]
+    archive["weeklies"] = merge_docs(archive["weeklies"], ed_docs["weeklies"], "week")[:8]
+    if from_repo:
+        status["editorial"] = "routines"
     if args.mode != "wire":
         if not os.environ.get("ANTHROPIC_API_KEY"):
-            print("ANTHROPIC_API_KEY not set: skipping the editorial layer")
+            print("ANTHROPIC_API_KEY not set: using the editorial/ folder only")
         else:
             import editor
             try:

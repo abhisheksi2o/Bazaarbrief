@@ -1,0 +1,129 @@
+{
+  "groups": [
+    {
+      "items": [
+        {
+          "ids": [
+            "8d5334be0702",
+            "3f27652c5cd6"
+          ],
+          "text": "The Nifty fell about 2.1% and the Sensex about 2.3% over the week, their fifth straight weekly decline, as foreign investors kept selling into the crude oil spike and rising global yields."
+        },
+        {
+          "ids": [
+            "10584298b760",
+            "c3fbac7a1903"
+          ],
+          "text": "The rupee had its sharpest weekly fall in four months, sliding to around 95.5-95.6 per dollar as Brent crude briefly approached $110, with the RBI stepping in to sell dollars to slow the decline."
+        },
+        {
+          "ids": [
+            "c0170742273e",
+            "238c0fe685a0",
+            "4f45def216da",
+            "490ef5d552fe"
+          ],
+          "text": "India's 10-year bond yield pushed past 7% for the first time in a while, as the RBI trimmed bond buybacks even while draining roughly Rs 1 trillion to Rs 1.5 lakh crore of surplus cash through OMO bond sales and VRRR auctions over the week."
+        },
+        {
+          "ids": [
+            "e5647e0982f2",
+            "ce46207b3918"
+          ],
+          "text": "Retail inflation is estimated to have risen to a 20-month high near 4.9% in August, narrowing the room for an RBI rate cut; SBI's research arm now expects 25 basis-point hikes in both October and December instead."
+        },
+        {
+          "ids": [
+            "0e847f6a36b2"
+          ],
+          "text": "India's forex reserves jumped $44.9 billion in a week to a record $785.7 billion, the world's fourth largest, giving the RBI more firepower to keep defending the rupee into next week."
+        }
+      ],
+      "label": "India"
+    },
+    {
+      "items": [
+        {
+          "ids": [
+            "7c587a4098e4",
+            "1732aebd8846",
+            "1450f61557e0"
+          ],
+          "text": "US consumer inflation rose 3.4% year-on-year in August, flipping market expectations from a Fed rate cut to an almost-certain hike at next week's meeting, with odds near 85-90%."
+        },
+        {
+          "ids": [
+            "8f5e28fd0f74"
+          ],
+          "text": "The ECB raised rates to 2.5% during the week and signalled more hikes could follow if energy prices stay elevated, a hawkish tone echoed by Bundesbank chief Nagel."
+        },
+        {
+          "ids": [
+            "7c587a4098e4"
+          ],
+          "text": "US Treasury yields climbed toward 5%, their highest since 2023, as sticky inflation data firmed up bets on further Fed tightening and rattled bond markets worldwide."
+        },
+        {
+          "ids": [
+            "48aec2cc4184",
+            "c8789753c313"
+          ],
+          "text": "Wall Street swung sharply through the week: the Dow fell over 1,600 points across four sessions on oil and yield worries before rebounding as inflation data steadied nerves and crude eased back from its highs."
+        },
+        {
+          "ids": [
+            "7ffa9fa7f8e5",
+            "eb84be0ce120",
+            "91a60ec1ae12"
+          ],
+          "text": "The European Commission sent the landmark EU-India free trade deal to its council for signature, while Brics nations flagged unilateral tariffs as a global risk, as India hosted the BRICS summit in New Delhi over the weekend."
+        }
+      ],
+      "label": "World"
+    }
+  ],
+  "rangeLabel": "7-11 Sep",
+  "readMinutes": 4,
+  "scoreboard": [
+    {
+      "changePct": -2.09,
+      "label": "Nifty 50",
+      "value": "23,398.10"
+    },
+    {
+      "changePct": -2.27,
+      "label": "Sensex",
+      "value": "74,781.76"
+    },
+    {
+      "changePct": 1.18,
+      "label": "USD/INR",
+      "value": "95.54"
+    },
+    {
+      "changePct": 9.32,
+      "label": "Brent $",
+      "value": "$104.42"
+    },
+    {
+      "changePct": -2.26,
+      "label": "Gold $",
+      "value": "$4,390"
+    },
+    {
+      "changePct": -1.17,
+      "label": "S&P 500",
+      "value": "7,656.98"
+    }
+  ],
+  "standfirst": "A surge in crude oil on West Asia security fears was the week's dominant story, dragging Indian equities to a fifth consecutive weekly loss, weakening the rupee and pushing India's bond yields above 7%. The RBI spent the week draining surplus banking-system liquidity and defending the rupee, even as forex reserves hit a record. Globally, hot US inflation flipped market expectations from a Fed rate cut to a near-certain hike, with the ECB striking a similarly hawkish tone.",
+  "title": "Oil shock drives Sensex and Nifty to a fifth straight weekly loss as Fed turns hawkish",
+  "updatedAt": "2026-09-12T03:47:32.378560Z",
+  "watch": [
+    "The Fed's September 16-17 meeting, where markets now lean toward a rate hike rather than a cut.",
+    "Whether Brent crude holds below $105 or reignites the sell-off in Indian equities and the rupee.",
+    "RBI's MPC review in October, with inflation near 5% and bond yields above 7% narrowing the case for a rate cut.",
+    "The rupee's ability to hold above 95.5 to the dollar if oil and global yields stay elevated."
+  ],
+  "week": "2026-W37"
+}

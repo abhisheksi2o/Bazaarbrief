@@ -1,0 +1,162 @@
+{
+  "date": "2026-09-10",
+  "dateLabel": "Thu 10 Sep",
+  "groups": [
+    {
+      "items": [
+        {
+          "ids": [
+            "55059ebcd76a",
+            "625d3e687d61"
+          ],
+          "text": "Sensex and Nifty reversed early losses to close higher, snapping a three-day losing streak, after a wild 1,000-point swing during the new closing auction session on expiry day."
+        },
+        {
+          "ids": [
+            "42fc65473b96",
+            "be1f44f8e9ec"
+          ],
+          "text": "The rupee slid past 95.4 to the dollar as Brent crude surged above $105, deepening worries about India's oil import bill."
+        },
+        {
+          "ids": [
+            "fe15f0d243b9",
+            "44f9b8162525",
+            "cdbda557cec1"
+          ],
+          "text": "US Treasury yields hit their highest level since 2023 and global bond yields broadly rose to multi-year highs, as hot US producer prices firmed up bets on further Fed tightening."
+        },
+        {
+          "ids": [
+            "d45d108581ed",
+            "d49b7ccacfee"
+          ],
+          "text": "The ECB raised rates to 2.5 percent, citing longer-lasting inflation risks from the oil spike, reinforcing a hawkish global tone."
+        },
+        {
+          "ids": [
+            "5e51c1f39e5d",
+            "7dacc1414aca"
+          ],
+          "text": "Wall Street and Asian markets fell in sympathy with the oil-and-yields squeeze, with the Dow down around 300 points."
+        }
+      ],
+      "label": "Markets"
+    },
+    {
+      "items": [
+        {
+          "ids": [
+            "a789328c3da2",
+            "c7d9a1114220"
+          ],
+          "text": "RBI moved to drain roughly Rs 5 lakh crore of surplus banking liquidity via a 26-day VRRR auction, and used FX swaps to support the rupee."
+        },
+        {
+          "ids": [
+            "e115b3d12f81"
+          ],
+          "text": "A Reuters poll pointed to India's August retail inflation hitting a 20-month high on food and fuel prices, narrowing the room for RBI rate cuts."
+        },
+        {
+          "ids": [
+            "d60eae26dbd7",
+            "2326a74aea58",
+            "33ce55ba86c2"
+          ],
+          "text": "SEBI's new closing auction session drew fresh scrutiny after today's 1,000-point Sensex swing, with the regulator's chief promising a rework of the mechanism."
+        },
+        {
+          "ids": [
+            "8ee340e9bf79",
+            "827a2fd9ef75"
+          ],
+          "text": "Adani Ports and its executives settled separate SEBI disclosure and project-related proceedings, closing out some of the group's regulatory overhang."
+        },
+        {
+          "ids": [
+            "446a38fe706f",
+            "e94b82b98a8c"
+          ],
+          "text": "RBI Governor Sanjay Malhotra used the Global Fintech Fest to push data protection and responsible AI use among fintechs, and floated tokenising gold."
+        }
+      ],
+      "label": "RBI, SEBI and policy"
+    },
+    {
+      "items": [
+        {
+          "ids": [
+            "be1f44f8e9ec"
+          ],
+          "text": "Brent crude surged past $105 a barrel on unresolved West Asia tensions, the single biggest driver of markets worldwide today."
+        },
+        {
+          "ids": [
+            "d45d108581ed",
+            "44f9b8162525"
+          ],
+          "text": "The ECB lifted rates to 2.5 percent and flagged further hikes may follow, while hot US producer prices raised the odds of a Fed rate hike too."
+        },
+        {
+          "ids": [
+            "cdbda557cec1",
+            "7052469d064e"
+          ],
+          "text": "Global bond yields jumped to multi-year highs as traders priced in stickier inflation and tighter central banks everywhere."
+        },
+        {
+          "ids": [
+            "0e9b96493399"
+          ],
+          "text": "The US added Canadian alcohol, dairy and motorbikes to its import restrictions, keeping trade tensions simmering even as tariff talks continue elsewhere."
+        }
+      ],
+      "label": "World"
+    }
+  ],
+  "readMinutes": 3,
+  "scoreboard": [
+    {
+      "changePct": 0.198,
+      "label": "Nifty 50",
+      "value": "23,477.80"
+    },
+    {
+      "changePct": 0.185,
+      "label": "Sensex",
+      "value": "74,902.59"
+    },
+    {
+      "changePct": 0.64,
+      "label": "USD/INR",
+      "value": "95.43"
+    },
+    {
+      "changePct": 5.82,
+      "label": "Brent $",
+      "value": "107.10"
+    },
+    {
+      "changePct": -0.213,
+      "label": "Gold $",
+      "value": "4,406.60"
+    },
+    {
+      "change": "+9 bp",
+      "changePct": null,
+      "label": "US 10Y",
+      "value": "4.92%"
+    }
+  ],
+  "sessionLabel": "Late edition",
+  "standfirst": "Brent crude topped $105 on unresolved West Asia tensions, dragging the rupee to a weekly low and pushing global bond yields to multi-year highs. Indian markets swung wildly through a volatile derivatives expiry before closing higher, while the RBI drained surplus liquidity and the ECB raised rates to 2.5 percent on stickier inflation.",
+  "title": "Oil's surge past $100 rattles rupee and bonds as Sensex claws back from an expiry-day whipsaw",
+  "updatedAt": "2026-09-10T17:31:30.146393Z",
+  "watch": [
+    "US inflation data and the Fed's next signal on rates, due soon, will set the tone for Friday's global session.",
+    "GIFT Nifty and Asian cues at Friday's open, after a volatile expiry day and crude above $105.",
+    "Whether SEBI moves quickly to revise the closing auction session mechanism after repeated 1,000-point swings this week.",
+    "The rupee's ability to hold above 95.5 to the dollar if oil stays elevated, and whether RBI steps up FX intervention."
+  ]
+}

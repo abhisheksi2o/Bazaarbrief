@@ -1,0 +1,163 @@
+{
+  "date": "2026-09-11",
+  "dateLabel": "Fri 11 Sep",
+  "groups": [
+    {
+      "items": [
+        {
+          "ids": [
+            "3f27652c5cd6",
+            "aa434fd243dc",
+            "8d5334be0702"
+          ],
+          "text": "Sensex fell 121 points to 74,781.76 and Nifty 80 points to 23,398.10, extending India's losing streak to a fifth straight week as crude oil and rising bond yields kept pressure on equities."
+        },
+        {
+          "ids": [
+            "bd67af9a1923",
+            "7132f691eab6"
+          ],
+          "text": "Brent crude eased to about $105 a barrel after nearing $110 earlier in the week, but West Asia supply worries kept prices elevated and continued to weigh on oil-import-dependent sectors."
+        },
+        {
+          "ids": [
+            "10584298b760",
+            "178020301966"
+          ],
+          "text": "The rupee logged its sharpest weekly fall in four months, slipping to around 95.5-95.6 to the dollar, even as RBI stepped in with dollar sales to slow the decline."
+        },
+        {
+          "ids": [
+            "1f9631debc5a",
+            "977ddbc2cd65",
+            "e5087bc97b94"
+          ],
+          "text": "Metal stocks including Vedanta and NALCO fell up to 5% and HDFC Bank hit a fresh 52-week low, while India's 10-year bond yield pushed past 7% on the oil-driven sell-off."
+        },
+        {
+          "ids": [
+            "aa0210420b4f",
+            "7c587a4098e4"
+          ],
+          "text": "US 10-year Treasury yields climbed near 5% as hot American inflation data firmed up bets on a Federal Reserve rate hike next week, keeping global risk sentiment on edge."
+        }
+      ],
+      "label": "Markets"
+    },
+    {
+      "items": [
+        {
+          "ids": [
+            "64054ebb5dd3",
+            "4f45def216da",
+            "490ef5d552fe"
+          ],
+          "text": "RBI drained roughly Rs 1 lakh crore of surplus banking cash through OMO bond sales in three tranches and failed VRRR auctions, even as it partially trimmed a debt sale as yields spiked."
+        },
+        {
+          "ids": [
+            "96c340756b40",
+            "937f18696e6f"
+          ],
+          "text": "Governor Malhotra said the RBI has 'nothing off the table' to manage liquidity and the rupee, while flagging balanced inflation risks ahead of the MPC's October policy review."
+        },
+        {
+          "ids": [
+            "e74967b717dd",
+            "e5647e0982f2"
+          ],
+          "text": "India's retail inflation is estimated to have risen to a 20-month high of 4.9% in August, narrowing room for a rate cut even as SBI's research arm now expects hikes in October and December."
+        },
+        {
+          "ids": [
+            "d8bef77aeaa2"
+          ],
+          "text": "SEBI and RBI launched a Demat 2.0 pilot letting existing demat accounts hold tokenised corporate bonds without fresh KYC, part of a broader push to widen access to India's bond market."
+        },
+        {
+          "ids": [
+            "963c73b4f460"
+          ],
+          "text": "RBI Governor Malhotra told fintechs to treat customer data as a fiduciary trust, not a business asset, signalling tighter data-governance expectations for lending and payment apps."
+        }
+      ],
+      "label": "RBI, SEBI and policy"
+    },
+    {
+      "items": [
+        {
+          "ids": [
+            "1732aebd8846",
+            "7c587a4098e4"
+          ],
+          "text": "US consumer inflation rose 3.4% year-on-year in August, pushing Fed rate-hike bets to around 85-90% for next week's meeting, a reversal from earlier expectations of a cut."
+        },
+        {
+          "ids": [
+            "8f5e28fd0f74"
+          ],
+          "text": "The ECB signalled it may need further rate hikes if energy prices stay elevated, with Bundesbank chief Nagel striking a hawkish tone on the oil-driven inflation shock."
+        },
+        {
+          "ids": [
+            "3424751ac9e6",
+            "7132f691eab6"
+          ],
+          "text": "Wall Street rebounded as oil eased, with the Dow up over 500 points, while Asian markets stayed under pressure, with Japan's Nikkei down as much as 3% during the week's crude spike."
+        },
+        {
+          "ids": [
+            "5827bbb96b10",
+            "7b202a5ff5dc"
+          ],
+          "text": "Vladimir Putin met Modi in New Delhi ahead of the weekend's BRICS summit, pitching a bloc investment platform, while Modi separately discussed seafarers' safety in West Asia with Iran's president as the oil shock continues."
+        }
+      ],
+      "label": "World"
+    }
+  ],
+  "readMinutes": 3,
+  "scoreboard": [
+    {
+      "changePct": -0.339,
+      "label": "Nifty 50",
+      "value": "23,398.10"
+    },
+    {
+      "changePct": -0.161,
+      "label": "Sensex",
+      "value": "74,781.76"
+    },
+    {
+      "changePct": 0.461,
+      "label": "USD/INR",
+      "value": "95.55"
+    },
+    {
+      "changePct": -2.313,
+      "label": "Brent $",
+      "value": "105.14"
+    },
+    {
+      "changePct": 0.69,
+      "label": "Gold $",
+      "value": "4,394.60"
+    },
+    {
+      "change": "+1 bp",
+      "changePct": null,
+      "label": "US 10Y",
+      "value": "4.96%"
+    }
+  ],
+  "sessionLabel": "Late edition",
+  "standfirst": "Indian equities closed lower for a fifth straight week as Brent crude near $105 and rising bond yields kept investors cautious, even as RBI moved to drain surplus liquidity and defend the rupee. Hot US inflation data pushed Fed rate-hike bets to near-certain levels for next week, while the ECB struck a similarly hawkish tone on energy-driven price pressures. India hosts BRICS leaders including Vladimir Putin this weekend against this volatile backdrop.",
+  "title": "Sensex and Nifty extend losing streak to five weeks as oil, Fed rate-hike bets and RBI's cash drain weigh",
+  "updatedAt": "2026-09-11T16:40:29.472131Z",
+  "watch": [
+    "US Federal Reserve's September 16-17 meeting, where markets now lean toward a rate hike rather than a cut.",
+    "BRICS Summit in New Delhi over the weekend, with trade, tariffs and the West Asia oil shock on the agenda.",
+    "Whether Brent crude holds below $105 or reignites this week's sell-off in Indian equities and the rupee.",
+    "RBI's MPC review in October, with inflation near 5% and yields above 7% narrowing the case for a rate cut."
+  ]
+}

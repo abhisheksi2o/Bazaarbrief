@@ -1,0 +1,155 @@
+{
+  "date": "2026-09-12",
+  "dateLabel": "Sat 12 Sep",
+  "groups": [
+    {
+      "items": [
+        {
+          "ids": [
+            "8d5334be0702",
+            "3f27652c5cd6"
+          ],
+          "text": "Sensex and Nifty logged a fifth straight weekly loss, with the Nifty down about 2.1% and the Sensex down about 2.3% this week, as surging crude oil and climbing global bond yields weighed on sentiment."
+        },
+        {
+          "ids": [
+            "1fb91a6ee75d",
+            "f76211fc00f1",
+            "24ca40ca676e"
+          ],
+          "text": "Brent crude surged as high as near $108 during the week on Strait of Hormuz tensions before easing to $104.42, still up more than 9% on the week and the single biggest driver of the selloff."
+        },
+        {
+          "ids": [
+            "10584298b760",
+            "c3fbac7a1903"
+          ],
+          "text": "The rupee had its sharpest weekly fall in four months to around 95.5-95.6 per dollar, with the RBI reportedly stepping in to sell dollars and defend the currency."
+        },
+        {
+          "ids": [
+            "c0170742273e",
+            "238c0fe685a0",
+            "4f45def216da"
+          ],
+          "text": "India's 10-year bond yield crossed 7% as the RBI trimmed bond buybacks and moved to drain roughly Rs 1 trillion of surplus banking-system cash through bond sales and VRRR auctions."
+        },
+        {
+          "ids": [
+            "0e847f6a36b2"
+          ],
+          "text": "India's forex reserves jumped $44.9 billion in a week to a record $785.7 billion, the world's fourth largest, giving the RBI more room to defend the rupee."
+        }
+      ],
+      "label": "Markets"
+    },
+    {
+      "items": [
+        {
+          "ids": [
+            "96c340756b40",
+            "f5904105e961"
+          ],
+          "text": "RBI Governor Malhotra said the central bank has 'nothing off the table' to manage the liquidity surge, including bond sales and FX swaps, and that the MPC will reassess growth and inflation at its next meeting."
+        },
+        {
+          "ids": [
+            "8cd57685244c",
+            "d8bef77aeaa2"
+          ],
+          "text": "SEBI is preparing a consultation paper on how derivatives settlement prices are calculated, and SEBI and RBI together launched a 'Demat 2.0' pilot to let corporate bonds be held as tokenised digital records."
+        },
+        {
+          "ids": [
+            "0b7e6d7ca426"
+          ],
+          "text": "Finance Minister Sitharaman pushed the RBI to speed up the digital rupee and tokenisation, and called for soft-touch regulation of AI even as she flagged risks from agentic AI."
+        },
+        {
+          "ids": [
+            "7ffa9fa7f8e5"
+          ],
+          "text": "The European Commission sent the landmark EU-India free trade deal to its council for signature, a significant step toward ratification that could open tariff-free access for Indian exporters."
+        }
+      ],
+      "label": "RBI, SEBI and policy"
+    },
+    {
+      "items": [
+        {
+          "ids": [
+            "7c587a4098e4",
+            "1732aebd8846",
+            "1450f61557e0"
+          ],
+          "text": "US inflation data came in hotter than expected in August, up 3.4% year-on-year, pushing the market-implied odds of a Federal Reserve rate hike next week to around 85%."
+        },
+        {
+          "ids": [
+            "8f5e28fd0f74"
+          ],
+          "text": "A senior ECB official said further rate hikes may be needed if energy prices stay elevated, underlining that major central banks are leaning hawkish together just as oil spikes."
+        },
+        {
+          "ids": [
+            "48aec2cc4184",
+            "c8789753c313"
+          ],
+          "text": "Wall Street stayed volatile: the Dow fell over 1,600 points across four sessions on oil and yield worries, even as US stocks closed higher on Friday after the inflation print reassured investors the economy can handle higher rates."
+        },
+        {
+          "ids": [
+            "eb84be0ce120",
+            "24ca40ca676e"
+          ],
+          "text": "Brics nations flagged unilateral tariffs and trade barriers as a global risk, a veiled swipe at rising US protectionism, while crude stayed volatile on Red Sea and Gulf security concerns."
+        }
+      ],
+      "label": "World"
+    }
+  ],
+  "readMinutes": 3,
+  "scoreboard": [
+    {
+      "changePct": -0.34,
+      "label": "Nifty 50",
+      "value": "23,398.10"
+    },
+    {
+      "changePct": -0.16,
+      "label": "Sensex",
+      "value": "74,781.76"
+    },
+    {
+      "changePct": -0.16,
+      "label": "USD/INR",
+      "value": "95.54"
+    },
+    {
+      "changePct": -2.98,
+      "label": "Brent $",
+      "value": "$104.42"
+    },
+    {
+      "changePct": 0.58,
+      "label": "Gold $",
+      "value": "$4,390"
+    },
+    {
+      "change": "+3 bp",
+      "changePct": null,
+      "label": "US 10Y",
+      "value": "4.975%"
+    }
+  ],
+  "sessionLabel": "Weekend edition",
+  "standfirst": "Indian shares closed out their worst run in years, with the Sensex and Nifty falling for a fifth straight week as crude oil surged on Gulf security fears and the rupee hit its weakest level in months. The RBI moved to drain surplus cash through large bond sales while defending the rupee, even as record forex reserves gave it more firepower. Globally, hot US inflation data cemented bets on a Federal Reserve rate hike next week, adding another headwind for emerging markets including India.",
+  "title": "Sensex, Nifty log fifth weekly loss as oil spike and hawkish Fed rattle markets",
+  "updatedAt": "2026-09-12T03:46:17.407853Z",
+  "watch": [
+    "RBI's next MPC meeting, with markets increasingly pricing in a rate hike rather than a cut given the rupee and oil pressures.",
+    "The Fed's rate decision next week, now seen as a near-certain hike after hot US inflation data.",
+    "Crude oil and Strait of Hormuz and Red Sea developments, still the single biggest swing factor for the rupee and Indian markets.",
+    "India's 10-year bond yield near 7% and further RBI liquidity operations to manage surplus banking-system cash."
+  ]
+}

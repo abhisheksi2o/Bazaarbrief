@@ -12,12 +12,13 @@ A daily financial and economic news desk for India and the world. Two deployment
 - `build.py` – orchestrates a run (`--mode wire|edition|weekend`) and writes the static site to `site/`.
 - `web/` – the standalone app: `index.html`, web manifest, service worker, icons. Reads `data/*.json` next to it.
 - `.github/workflows/desk.yml` – the schedule: hourly wire refresh, weekday editions at 07:00 / 16:30 / 22:00 IST, weekend edition at 09:00 IST.
+- `editorial/` – edited feed and recaps pushed by the claude.ai Routines after every edition (covered by a Claude subscription, no API key needed). `build.py` uses these when `ANTHROPIC_API_KEY` is absent.
 - `app.html`, `ROUTINE.md`, `ROUTINE-HOURLY.md`, `seed/` – the Claude-artifact deployment.
 
 ## Setting up the standalone site (one time)
 
 1. Repository **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-2. **Settings → Secrets and variables → Actions → New repository secret**: `ANTHROPIC_API_KEY` (from https://console.anthropic.com). Without it the site still refreshes hourly, but recaps and why-notes are not written.
+2. Optional: **Settings → Secrets and variables → Actions → New repository secret** `ANTHROPIC_API_KEY` (pay-as-you-go, from https://console.anthropic.com). Not needed when the claude.ai Routines push `editorial/`; the site then gets recaps and why-notes from there.
 3. Optional: **Variables → New repository variable** `DESK_MODEL` = `claude-sonnet-5` to cut editorial cost by about 60%.
 4. **Actions → Bazaar Brief desk → Run workflow** (mode `edition`) for the first build, or wait for the next scheduled run.
 
