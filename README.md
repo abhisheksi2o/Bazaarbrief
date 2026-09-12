@@ -49,4 +49,4 @@ python3 -m http.server -d site 8000   # open http://localhost:8000
 - Weekdays at 07:00, 16:30 and 22:00 IST: morning brief, closing wrap, late edition (editorial pass, why-it-matters notes, recap of the day).
 - Saturday and Sunday at 09:00 IST: weekend edition plus recap of the week.
 
-Change or pause them from the Routines list on claude.ai.
+The editorial Routines fire into one standing claude.ai session that has this repository checked out with push access ("Bazaar Brief desk (standing editorial session)"). Each edition writes to the artifact database and pushes `editorial/` here, which triggers the site build. Change or pause the Routines from the Routines list on claude.ai; if the standing session is ever archived, create a new session with this repo as its source and re-point the Routines at it.
