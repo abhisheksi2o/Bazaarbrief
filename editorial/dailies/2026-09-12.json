@@ -1,155 +1,167 @@
 {
-  "date": "2026-09-12",
-  "dateLabel": "Sat 12 Sep",
-  "groups": [
+ "date": "2026-09-12",
+ "dateLabel": "Sat 12 Sep",
+ "sessionLabel": "Weekend edition",
+ "readMinutes": 3,
+ "updatedAt": "2026-09-12T16:50:17.130642Z",
+ "title": "Tata Sons forced to list, rupee at 95.5 and bond yields past 7 percent cap a fifth losing week for Dalal Street",
+ "standfirst": "Indian equities ended a fifth straight losing week with the Nifty at 23,398 and the Sensex at 74,782, as Brent crude above 104 dollars and US Treasury yields near 5 percent kept investors on the back foot. The RBI rejected Tata Sons' bid to stay unlisted, SEBI moved to rework the closing auction session, and HDFC Bank named two candidates for its next chief. Globally, hot US inflation cemented bets on a Federal Reserve rate hike next week, Saudi Arabia shut its pipeline that bypasses the Strait of Hormuz, and BRICS leaders in New Delhi agreed a joint declaration despite Gulf tensions.",
+ "scoreboard": [
+  {
+   "label": "Nifty 50",
+   "value": "23,398.10",
+   "changePct": -0.34
+  },
+  {
+   "label": "Sensex",
+   "value": "74,781.76",
+   "changePct": -0.16
+  },
+  {
+   "label": "USD/INR",
+   "value": "95.54",
+   "changePct": -0.16
+  },
+  {
+   "label": "Brent $",
+   "value": "$104.61",
+   "changePct": -2.81
+  },
+  {
+   "label": "Gold $",
+   "value": "$4,409",
+   "changePct": 1.02
+  },
+  {
+   "label": "US 10Y",
+   "value": "4.97%",
+   "change": "+3 bp",
+   "changePct": null
+  }
+ ],
+ "groups": [
+  {
+   "label": "Markets",
+   "items": [
     {
-      "items": [
-        {
-          "ids": [
-            "8d5334be0702",
-            "3f27652c5cd6"
-          ],
-          "text": "Sensex and Nifty logged a fifth straight weekly loss, with the Nifty down about 2.1% and the Sensex down about 2.3% this week, as surging crude oil and climbing global bond yields weighed on sentiment."
-        },
-        {
-          "ids": [
-            "1fb91a6ee75d",
-            "f76211fc00f1",
-            "24ca40ca676e"
-          ],
-          "text": "Brent crude surged as high as near $108 during the week on Strait of Hormuz tensions before easing to $104.42, still up more than 9% on the week and the single biggest driver of the selloff."
-        },
-        {
-          "ids": [
-            "10584298b760",
-            "c3fbac7a1903"
-          ],
-          "text": "The rupee had its sharpest weekly fall in four months to around 95.5-95.6 per dollar, with the RBI reportedly stepping in to sell dollars and defend the currency."
-        },
-        {
-          "ids": [
-            "c0170742273e",
-            "238c0fe685a0",
-            "4f45def216da"
-          ],
-          "text": "India's 10-year bond yield crossed 7% as the RBI trimmed bond buybacks and moved to drain roughly Rs 1 trillion of surplus banking-system cash through bond sales and VRRR auctions."
-        },
-        {
-          "ids": [
-            "0e847f6a36b2"
-          ],
-          "text": "India's forex reserves jumped $44.9 billion in a week to a record $785.7 billion, the world's fourth largest, giving the RBI more room to defend the rupee."
-        }
-      ],
-      "label": "Markets"
+     "text": "The Nifty closed Friday at 23,398.10 and the Sensex at 74,781.76, down 2.1 percent and 2.3 percent for the week, a fifth straight weekly loss driven by crude oil and rising US bond yields. Technical analysts say the Nifty's break below the 23,900 to 24,000 zone turns that area into resistance.",
+     "ids": [
+      "1ef05100fef3",
+      "8b5400902040"
+     ]
     },
     {
-      "items": [
-        {
-          "ids": [
-            "96c340756b40",
-            "f5904105e961"
-          ],
-          "text": "RBI Governor Malhotra said the central bank has 'nothing off the table' to manage the liquidity surge, including bond sales and FX swaps, and that the MPC will reassess growth and inflation at its next meeting."
-        },
-        {
-          "ids": [
-            "8cd57685244c",
-            "d8bef77aeaa2"
-          ],
-          "text": "SEBI is preparing a consultation paper on how derivatives settlement prices are calculated, and SEBI and RBI together launched a 'Demat 2.0' pilot to let corporate bonds be held as tokenised digital records."
-        },
-        {
-          "ids": [
-            "0b7e6d7ca426"
-          ],
-          "text": "Finance Minister Sitharaman pushed the RBI to speed up the digital rupee and tokenisation, and called for soft-touch regulation of AI even as she flagged risks from agentic AI."
-        },
-        {
-          "ids": [
-            "7ffa9fa7f8e5"
-          ],
-          "text": "The European Commission sent the landmark EU-India free trade deal to its council for signature, a significant step toward ratification that could open tariff-free access for Indian exporters."
-        }
-      ],
-      "label": "RBI, SEBI and policy"
+     "text": "The rupee ended the week at 95.54 to the dollar after its sharpest weekly fall in four months, as Brent held above 104 dollars on Strait of Hormuz tensions.",
+     "ids": [
+      "7d497a857218"
+     ]
     },
     {
-      "items": [
-        {
-          "ids": [
-            "7c587a4098e4",
-            "1732aebd8846",
-            "1450f61557e0"
-          ],
-          "text": "US inflation data came in hotter than expected in August, up 3.4% year-on-year, pushing the market-implied odds of a Federal Reserve rate hike next week to around 85%."
-        },
-        {
-          "ids": [
-            "8f5e28fd0f74"
-          ],
-          "text": "A senior ECB official said further rate hikes may be needed if energy prices stay elevated, underlining that major central banks are leaning hawkish together just as oil spikes."
-        },
-        {
-          "ids": [
-            "48aec2cc4184",
-            "c8789753c313"
-          ],
-          "text": "Wall Street stayed volatile: the Dow fell over 1,600 points across four sessions on oil and yield worries, even as US stocks closed higher on Friday after the inflation print reassured investors the economy can handle higher rates."
-        },
-        {
-          "ids": [
-            "eb84be0ce120",
-            "24ca40ca676e"
-          ],
-          "text": "Brics nations flagged unilateral tariffs and trade barriers as a global risk, a veiled swipe at rising US protectionism, while crude stayed volatile on Red Sea and Gulf security concerns."
-        }
-      ],
-      "label": "World"
+     "text": "India's 10-year government bond yield crossed 7 percent after the RBI accepted less than half the amount it targeted at a three-year bond auction, raising the cost of government borrowing.",
+     "ids": [
+      "c0170742273e"
+     ]
+    },
+    {
+     "text": "Foreign ownership of Indian-listed companies has slipped to a 17-year low as global funds chase the AI boom elsewhere and Indian earnings stay muted.",
+     "ids": [
+      "a6d81093e321"
+     ]
+    },
+    {
+     "text": "Wall Street rose on Friday despite hot inflation data, with the Dow up about 1 percent to 52,573 and the S&P 500 at 7,656.98, while Brent slipped 2.8 percent to 104.61 dollars but finished the week up 9.5 percent. The US 10-year yield closed at 4.97 percent.",
+     "ids": [
+      "c8789753c313",
+      "447d99bbc2b3"
+     ]
     }
-  ],
-  "readMinutes": 3,
-  "scoreboard": [
+   ]
+  },
+  {
+   "label": "RBI, SEBI and policy",
+   "items": [
     {
-      "changePct": -0.34,
-      "label": "Nifty 50",
-      "value": "23,398.10"
+     "text": "The RBI rejected Tata Sons' request to surrender its NBFC registration, forcing the Rs 2.01 lakh crore holding company toward a stock market listing within three years. Sources say Tata Sons will try to renegotiate with the RBI before considering any legal step.",
+     "ids": [
+      "c4a28a9be508",
+      "e9a1a96a9d63",
+      "954d864b2fe2"
+     ]
     },
     {
-      "changePct": -0.16,
-      "label": "Sensex",
-      "value": "74,781.76"
+     "text": "SEBI issued a consultation paper on the closing auction session with two options for expiry-day derivatives settlement, two alternatives for market timings and changes to order cancellation and Iceberg orders, after a month of volatile expiry sessions.",
+     "ids": [
+      "f91aa94f2496",
+      "f6efe8a1f1ff",
+      "8f61c7f89c91"
+     ]
     },
     {
-      "changePct": -0.16,
-      "label": "USD/INR",
-      "value": "95.54"
+     "text": "HDFC Bank's board sent two names to the RBI for the MD and CEO role, reportedly including internal candidate Kaizad Bharucha, and appointed chief credit officer Jimmy Tata as executive director.",
+     "ids": [
+      "8486f000e8e1",
+      "82b4076f379e",
+      "4c41b7387279"
+     ]
     },
     {
-      "changePct": -2.98,
-      "label": "Brent $",
-      "value": "$104.42"
+     "text": "Finance Minister Sitharaman pushed the RBI to speed up digital rupee pilots and tokenisation with light-touch rules, and met the AIIB president to discuss local-currency financing for infrastructure.",
+     "ids": [
+      "0b7e6d7ca426",
+      "ff6dde560b5e"
+     ]
     },
     {
-      "changePct": 0.58,
-      "label": "Gold $",
-      "value": "$4,390"
-    },
-    {
-      "change": "+3 bp",
-      "changePct": null,
-      "label": "US 10Y",
-      "value": "4.975%"
+     "text": "The RBI published draft KYC amendments and a standard procedure for freezing money-mule accounts after a Supreme Court order, while the US finalised anti-dumping and countervailing duties on Indian solar cells and panels.",
+     "ids": [
+      "b2346f095264",
+      "5e0e22d8e56c",
+      "84f7e8e9c280"
+     ]
     }
-  ],
-  "sessionLabel": "Weekend edition",
-  "standfirst": "Indian shares closed out their worst run in years, with the Sensex and Nifty falling for a fifth straight week as crude oil surged on Gulf security fears and the rupee hit its weakest level in months. The RBI moved to drain surplus cash through large bond sales while defending the rupee, even as record forex reserves gave it more firepower. Globally, hot US inflation data cemented bets on a Federal Reserve rate hike next week, adding another headwind for emerging markets including India.",
-  "title": "Sensex, Nifty log fifth weekly loss as oil spike and hawkish Fed rattle markets",
-  "updatedAt": "2026-09-12T03:46:17.407853Z",
-  "watch": [
-    "RBI's next MPC meeting, with markets increasingly pricing in a rate hike rather than a cut given the rupee and oil pressures.",
-    "The Fed's rate decision next week, now seen as a near-certain hike after hot US inflation data.",
-    "Crude oil and Strait of Hormuz and Red Sea developments, still the single biggest swing factor for the rupee and Indian markets.",
-    "India's 10-year bond yield near 7% and further RBI liquidity operations to manage surplus banking-system cash."
-  ]
+   ]
+  },
+  {
+   "label": "World",
+   "items": [
+    {
+     "text": "US consumer prices accelerated in August with the biggest core rise in four months, pushing the odds of a quarter-point Fed hike at next week's meeting to about 90 percent. The WSJ notes a first Fed hike rarely comes alone.",
+     "ids": [
+      "e1a088354c40",
+      "c94cfe1e66f8",
+      "11503c363f77"
+     ]
+    },
+    {
+     "text": "Saudi Arabia shut its East-West pipeline, the route it has used to bypass the closed Strait of Hormuz, after drone attacks it blamed on militants in Iraq, tightening global oil supply.",
+     "ids": [
+      "2bf60c03beca",
+      "f76211fc00f1"
+     ]
+    },
+    {
+     "text": "BRICS leaders adopted the New Delhi Declaration by consensus despite Iran-UAE divisions over the Gulf conflict, opposing carbon border taxes, pushing local-currency payments and backing a grain exchange. Modi and Xi agreed to work on the border dispute and trade imbalance.",
+     "ids": [
+      "b8c4789a2afe",
+      "19c52d131086",
+      "2173220df0a4",
+      "d105dba361d9"
+     ]
+    },
+    {
+     "text": "ECB policymaker Kaasik said it is understandable that markets expect more European rate hikes, adding to the global tightening mood, while Canada courts up to 1 trillion dollars from investors seeking shelter from US trade policy.",
+     "ids": [
+      "187533b86d42",
+      "94f46becb4ee"
+     ]
+    }
+   ]
+  }
+ ],
+ "watch": [
+  "The US Federal Reserve's September 16-17 meeting, where a quarter-point hike is now priced at about 90 percent.",
+  "Indian markets are shut Monday 14 September for Ganesh Chaturthi; trading resumes Tuesday with the Tata Sons listing overhang and SEBI's closing auction consultation in play.",
+  "Brent crude above 104 dollars with both the Strait of Hormuz and Saudi Arabia's East-West pipeline disrupted; the rupee near 95.5 and the 10-year yield above 7 percent.",
+  "Whether the Nifty can reclaim the 23,900 to 24,000 zone that has turned into resistance after a fifth losing week."
+ ]
 }
