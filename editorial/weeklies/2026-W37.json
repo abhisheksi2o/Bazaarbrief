@@ -2,9 +2,9 @@
  "week": "2026-W37",
  "rangeLabel": "7-11 Sep",
  "readMinutes": 4,
- "updatedAt": "2026-09-12T16:50:17.130642Z",
+ "updatedAt": "2026-09-13T03:42:15.143049Z",
  "title": "Oil above 105 dollars, a hawkish Fed and an RBI cash drain hand Dalal Street a fifth straight weekly loss",
- "standfirst": "Crude oil surging on West Asia supply fears was the story of the week, dragging the Nifty and Sensex to a fifth consecutive weekly fall, pushing the rupee to about 95.5 per dollar and lifting India's 10-year bond yield above 7 percent. The RBI spent the week draining surplus liquidity and selling dollars, while hot US inflation flipped expectations from a Fed rate cut to a near-certain hike and the ECB raised rates to 2.5 percent. The week ended with the RBI forcing Tata Sons toward a listing and BRICS leaders gathering in New Delhi.",
+ "standfirst": "Crude oil surging on West Asia supply fears was the story of the week, dragging the Nifty and Sensex to a fifth consecutive weekly fall, pushing the rupee to about 95.5 per dollar and lifting India's 10-year bond yield above 7 percent. The RBI spent the week draining surplus liquidity and selling dollars, while hot US inflation flipped expectations from a Fed rate cut to a near-certain hike and the ECB raised rates to 2.5 percent. The weekend brought the RBI's order forcing Tata Sons to list, which the group is expected to fight in court, a BRICS summit in New Delhi, and a Saudi pipeline shutdown that keeps oil supply tight into the Fed week.",
  "scoreboard": [
   {
    "label": "Nifty 50",
@@ -18,8 +18,8 @@
   },
   {
    "label": "USD/INR",
-   "value": "95.54",
-   "changePct": 1.18
+   "value": "95.55",
+   "changePct": 1.19
   },
   {
    "label": "Brent $",
@@ -42,38 +42,40 @@
    "label": "India",
    "items": [
     {
-     "text": "The Nifty fell 2.1 percent to 23,398.10 and the Sensex 2.3 percent to 74,781.76, a fifth straight weekly loss, as crude oil, rising US yields and the RBI's liquidity drain weighed on sentiment. Metal stocks fell up to 5 percent and HDFC Bank hit a 52-week low.",
+     "text": "The Nifty fell 2.1 percent to 23,398.10 and the Sensex 2.3 percent to 74,781.76, a fifth straight weekly loss, as crude oil, rising US yields and the RBI's liquidity drain weighed on sentiment. Metal stocks fell up to 5 percent, HDFC Bank hit a 52-week low and the Nifty broke below its 23,900 to 24,000 support.",
      "ids": [
-      "1ef05100fef3",
-      "8b5400902040"
+      "8b5400902040",
+      "d44546dc7c03"
      ]
     },
     {
-     "text": "The rupee logged its sharpest weekly fall in four months, sliding past 95.5 to end at 95.54, even as the RBI sold dollars and used FX swaps to slow the decline.",
+     "text": "The rupee logged its sharpest weekly fall in four months, sliding past 95.5 to 95.55, even as the RBI sold dollars and used FX swaps to slow the decline, and India's 10-year yield crossed 7 percent after a trimmed debt auction.",
      "ids": [
-      "7d497a857218"
+      "0cec958b8d3d",
+      "ac811b3014ae"
      ]
     },
     {
-     "text": "The RBI drained surplus banking cash through a 26-day VRRR auction and OMO bond sales, and India's 10-year yield crossed 7 percent after a trimmed debt auction. Governor Malhotra said nothing is off the table, while August retail inflation is estimated at a 20-month high near 4.9 percent, narrowing room for an October rate cut.",
+     "text": "The RBI drained surplus banking cash through a 26-day VRRR auction and OMO bond sales, Governor Malhotra said nothing is off the table on liquidity and the rupee, and August retail inflation is estimated at a 20-month high near 4.9 percent, narrowing room for an October rate cut.",
      "ids": [
-      "c0170742273e"
+      "0cec958b8d3d"
      ]
     },
     {
-     "text": "SEBI's month-old closing auction session produced 1,000-point Sensex swings on expiry day, prompting a weekend consultation paper with two options for expiry-day settlement. SEBI and the RBI also launched a Demat 2.0 pilot, and MSE settled India's first tokenised corporate bond.",
+     "text": "SEBI's month-old closing auction session produced 1,000-point Sensex swings on expiry day, prompting a weekend consultation paper that could keep the old settlement method for a year. SEBI and the RBI also launched a Demat 2.0 pilot and MSE settled India's first tokenised corporate bond.",
      "ids": [
       "f91aa94f2496",
-      "8f61c7f89c91",
+      "f18a8070d3db",
       "66a31b13228a"
      ]
     },
     {
-     "text": "The RBI rejected Tata Sons' bid to stay an unlisted NBFC, forcing the Rs 2.01 lakh crore holding company toward an IPO within three years, while HDFC Bank sent two names to the RBI for its next CEO and Adani Ports settled disclosure proceedings with SEBI.",
+     "text": "The RBI rejected Tata Sons' bid to stay an unlisted NBFC, a decision the group is expected to challenge in court, while HDFC Bank sent two names to the RBI for its next CEO, NSE cut its IPO to about Rs 22,569 crore ahead of an eleven-issue week, and Adani Ports settled disclosure proceedings with SEBI.",
      "ids": [
-      "c4a28a9be508",
       "e9a1a96a9d63",
-      "8486f000e8e1"
+      "349050b8ceba",
+      "8486f000e8e1",
+      "483204a8a611"
      ]
     }
    ]
@@ -82,40 +84,42 @@
    "label": "World",
    "items": [
     {
-     "text": "Brent crude surged past 105 dollars and neared 110 midweek on unresolved West Asia tensions, ending the week up 9.5 percent at 104.61 dollars. On Saturday Saudi Arabia shut the East-West pipeline it uses to bypass the Strait of Hormuz after drone attacks.",
+     "text": "Brent crude surged past 105 dollars and neared 110 midweek on unresolved West Asia tensions, ending the week up 9.5 percent at 104.61 dollars. Saudi Arabia then shut the East-West pipeline it uses to bypass Hormuz after drone attacks from Iraq, and Iran said the strait reopens only on its terms.",
      "ids": [
       "2bf60c03beca",
-      "f76211fc00f1",
-      "0cec958b8d3d"
+      "47891b179363",
+      "c5e2e5fdfe34"
      ]
     },
     {
-     "text": "US consumer inflation rose 3.4 percent year on year in August with hot producer prices earlier in the week, pushing the odds of a Fed hike at the September 16-17 meeting to about 90 percent. The US 10-year Treasury yield climbed to 4.97 percent, its highest since 2023.",
+     "text": "US consumer inflation rose 3.4 percent year on year in August, pushing the odds of a Fed hike at the September 16-17 meeting to about 90 percent. The US 10-year Treasury yield climbed to 4.97 percent, its highest since 2023.",
      "ids": [
       "e1a088354c40",
-      "c94cfe1e66f8",
-      "447d99bbc2b3"
+      "166b00958371",
+      "ac811b3014ae"
      ]
     },
     {
-     "text": "The ECB raised rates to 2.5 percent and signalled more hikes may follow if energy prices stay high, with policymaker Kaasik saying market pricing for further tightening is understandable.",
+     "text": "The ECB raised rates to 2.5 percent and President Lagarde said the inflation shock will be longer lasting, with policymakers warning high oil could force further hikes.",
      "ids": [
-      "187533b86d42"
+      "246b2801480f",
+      "917044a7022e"
      ]
     },
     {
-     "text": "Wall Street ended the week lower despite a Friday rebound, with the S&P 500 down 1.2 percent and the Dow down 2.1 percent, while Japan's Nikkei lost 1.6 percent and Hong Kong's Hang Seng 3.3 percent.",
+     "text": "Wall Street ended the week lower despite a Friday rebound, with the S&P 500 down 1.2 percent and the Dow down 2.1 percent, while Japan's Nikkei lost 1.6 percent and Hong Kong's Hang Seng 3.3 percent. Gold fell 1.8 percent.",
      "ids": [
-      "c8789753c313",
-      "166b00958371"
+      "204b7dc116c3",
+      "24c569e18bac"
      ]
     },
     {
-     "text": "India hosted the BRICS summit, where leaders adopted a consensus declaration opposing carbon border taxes and unilateral tariffs, and Modi held talks with Putin and Xi. The US-Canada trade war deepened and Washington finalised duties on Indian solar panels.",
+     "text": "India hosted the BRICS summit, where leaders adopted a unanimous declaration opposing carbon border taxes and unilateral tariffs but ruled out a common currency, and Modi held talks with Putin and Xi. Canada sought EU associate membership as its trade war with the US deepened, and Washington finalised duties on Indian solar panels.",
      "ids": [
       "b8c4789a2afe",
+      "6aab65de49ff",
       "d105dba361d9",
-      "19c52d131086",
+      "5c6aa321f2ca",
       "84f7e8e9c280"
      ]
     }
@@ -123,9 +127,9 @@
   }
  ],
  "watch": [
-  "The Fed's September 16-17 meeting: a hike is priced at about 90 percent, and history suggests a first hike rarely comes alone.",
-  "A four-day week in India after Monday's Ganesh Chaturthi holiday, with the Nifty below its former 23,900 to 24,000 support and foreign ownership at a 17-year low.",
-  "Oil supply with both the Strait of Hormuz and Saudi Arabia's East-West pipeline disrupted, and what it means for the rupee, bond yields and the RBI's October policy review.",
-  "Responses to SEBI's closing auction consultation, Tata Sons' next move on the RBI listing order, and the NSE IPO timetable."
+  "The Fed's September 16-17 meeting, with a hike priced at about 90 percent, and the Bank of Japan's decision in the same week.",
+  "A four-day week in India after Monday's Ganesh Chaturthi holiday, with eleven IPOs led by NSE seeking about Rs 24,600 crore and the Nifty below its former 23,900 to 24,000 support.",
+  "Oil supply with Hormuz and Saudi Arabia's East-West pipeline both disrupted, and what it means for the rupee, bond yields and the RBI's October policy review.",
+  "Tata Sons' expected court challenge to the RBI listing order, and responses to SEBI's closing auction consultation."
  ]
 }

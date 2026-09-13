@@ -1,0 +1,172 @@
+{
+ "date": "2026-09-13",
+ "dateLabel": "Sun 13 Sep",
+ "sessionLabel": "Weekend edition",
+ "readMinutes": 3,
+ "updatedAt": "2026-09-13T03:42:15.143049Z",
+ "title": "Tata Sons set to fight RBI listing order in court as Hormuz standoff hardens ahead of a Fed hike week",
+ "standfirst": "The Tata group is expected to challenge the RBI's order forcing Tata Sons to list, while NSE trimmed its IPO to about Rs 22,569 crore ahead of a week with eleven public issues and a Monday market holiday. Iraq seized the drone platform used to hit Saudi Arabia's East-West pipeline, but Iran said the Strait of Hormuz will reopen only on its terms and the US is rationing escort slots for tankers, keeping Brent above 104 dollars. ECB President Lagarde warned the inflation shock will last longer, the Fed meets this week with a hike priced in, and BRICS leaders closed their New Delhi summit with a unanimous declaration but no plan for a common currency.",
+ "scoreboard": [
+  {
+   "label": "Nifty 50",
+   "value": "23,398.10",
+   "changePct": -0.34
+  },
+  {
+   "label": "Sensex",
+   "value": "74,781.76",
+   "changePct": -0.16
+  },
+  {
+   "label": "USD/INR",
+   "value": "95.55",
+   "changePct": -0.15
+  },
+  {
+   "label": "Brent $",
+   "value": "$104.61",
+   "changePct": -2.81
+  },
+  {
+   "label": "Gold $",
+   "value": "$4,409",
+   "changePct": 1.02
+  },
+  {
+   "label": "US 10Y",
+   "value": "4.97%",
+   "change": "+3 bp",
+   "changePct": null
+  }
+ ],
+ "groups": [
+  {
+   "label": "Markets",
+   "items": [
+    {
+     "text": "Indian markets reopen Tuesday after Monday's Ganesh Chaturthi holiday with the Nifty at 23,398.10 and the Sensex at 74,781.76 after a fifth straight weekly loss; technical analysts say the 23,900 to 24,000 zone has turned from support into resistance.",
+     "ids": [
+      "8b5400902040",
+      "ba275a9ac8a3"
+     ]
+    },
+    {
+     "text": "Eleven public issues led by NSE and Hero Motors will seek about Rs 24,600 crore this week. NSE cut its offer to about Rs 22,569 crore from Rs 30,000 crore and priced it below unlisted-market levels, a sign of caution about demand.",
+     "ids": [
+      "6bc12bfbfe41",
+      "483204a8a611",
+      "e213d98b837d"
+     ]
+    },
+    {
+     "text": "Global funds are losing faith in Indian stocks as the AI boom pulls money to the US and Indian earnings disappoint, leaving foreign ownership at a multi-year low.",
+     "ids": [
+      "d44546dc7c03"
+     ]
+    },
+    {
+     "text": "The rupee is at 95.55 to the dollar after its sharpest weekly fall in four months, Brent is at 104.61 dollars after rising 9.5 percent last week, and the US 10-year yield sits at 4.97 percent, just below the 5 percent level last seen in 2023.",
+     "ids": [
+      "ac811b3014ae",
+      "0cec958b8d3d"
+     ]
+    },
+    {
+     "text": "Gold closed the week at about 4,409 dollars an ounce, pulling back from the 4,500 zone as crude and Fed hike bets lifted the dollar, while Bitcoin hovers near 77,000 dollars ahead of the Fed.",
+     "ids": [
+      "24c569e18bac",
+      "ac2318f30db3"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "RBI, SEBI and policy",
+   "items": [
+    {
+     "text": "Tata Sons is expected to challenge in court the RBI's refusal to let it surrender its NBFC licence, which would otherwise force the Rs 2.01 lakh crore holding company to list within three years. Sources earlier said the group would try renegotiation first.",
+     "ids": [
+      "349050b8ceba",
+      "028a227d99e5",
+      "954d864b2fe2"
+     ]
+    },
+    {
+     "text": "SEBI's consultation on the closing auction session proposes either blending VWAP and auction prices or keeping the old settlement method for at least a year, along with changes to market timings and order handling. Traders gave a mixed response.",
+     "ids": [
+      "f18a8070d3db",
+      "763073ca66d3",
+      "3d3679b3b265"
+     ]
+    },
+    {
+     "text": "HDFC Bank's board shortlisted two candidates for MD and CEO, reportedly including internal candidate Kaizad Bharucha, after Sashidhar Jagdishan declined a third term.",
+     "ids": [
+      "8486f000e8e1",
+      "82b4076f379e"
+     ]
+    },
+    {
+     "text": "The foreign ministry said there is no proposal for a BRICS currency, only work on local-currency settlement, while Commerce Minister Goyal hailed the unanimous New Delhi Declaration and the bloc backed tax working groups and a customs pact.",
+     "ids": [
+      "6aab65de49ff",
+      "0ad2d77fb1a7",
+      "a61c379aa4ba"
+     ]
+    },
+    {
+     "text": "Banks are shut for up to four days this week in some cities, and Washington finalised anti-dumping and countervailing duties on Indian solar cells and panels.",
+     "ids": [
+      "0667faa6510e",
+      "84f7e8e9c280"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "World",
+   "items": [
+    {
+     "text": "Iraq seized the drone-launching platform used against Saudi Arabia's East-West pipeline, tracing it to a province near the Iranian border, but Iran said Hormuz will reopen only if the US meets its conditions and the US is limiting air-defence escort slots for tankers.",
+     "ids": [
+      "47891b179363",
+      "c5e2e5fdfe34",
+      "7d31f77395f1",
+      "2bf60c03beca"
+     ]
+    },
+    {
+     "text": "ECB President Lagarde said the current inflation shock will be longer lasting and a senior policymaker warned high oil could force further hikes, while the Fed and Bank of Japan both decide on rates this week with a US hike priced at about 90 percent.",
+     "ids": [
+      "246b2801480f",
+      "917044a7022e",
+      "166b00958371",
+      "2cc4c8ddb0ef"
+     ]
+    },
+    {
+     "text": "OpenAI will not go public in 2026, Sam Altman said, and Altman and Musk joined Anthropic's Dario Amodei in calling for a slowdown in AI development. Larry Ellison cancelled a 7.5 billion dollar Oracle share sale a day after announcing it.",
+     "ids": [
+      "fd36d65c782d",
+      "eefb0ae7f228",
+      "a9942f5f61b3"
+     ]
+    },
+    {
+     "text": "Canada is seeking associate membership of the EU as its trade war with the US deepens and hurts Republican prospects in swing states, while South Korea's exchange extends trading into evening sessions to woo global investors.",
+     "ids": [
+      "5c6aa321f2ca",
+      "d09edd0babf9",
+      "89fb0400bfb1"
+     ]
+    }
+   ]
+  }
+ ],
+ "watch": [
+  "The Federal Reserve's decision on Wednesday, with a quarter-point hike priced at about 90 percent, and the Bank of Japan's meeting the same week.",
+  "Indian markets are shut Monday for Ganesh Chaturthi; from Tuesday, eleven IPOs led by NSE compete for about Rs 24,600 crore of investor money.",
+  "Whether Saudi Arabia's East-West pipeline reopens after Iraq's seizure of the drone platform, and any change in Iran's conditions for reopening Hormuz, with Brent above 104 dollars.",
+  "Tata Sons' response to the RBI listing order, and the Nifty's ability to reclaim the 23,900 to 24,000 zone."
+ ]
+}
