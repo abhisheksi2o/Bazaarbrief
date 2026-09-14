@@ -1,0 +1,183 @@
+{
+ "date": "2026-09-14",
+ "dateLabel": "Mon 14 Sep",
+ "sessionLabel": "Morning brief",
+ "readMinutes": 3,
+ "updatedAt": "2026-09-14T01:40:15.798567Z",
+ "title": "Asia slides on oil at 108 dollars and AI jitters as India sits out Monday ahead of a Fed hike week",
+ "standfirst": "Indian markets are closed for Ganesh Chaturthi and reopen Tuesday with the Nifty at 23,398 after five straight weekly losses, while Asian shares fell on Monday morning with the Kospi down over 3 percent on AI warnings and Brent up 3 percent to about 108 dollars after Gulf states postponed talks with Iran on Hormuz. Tata Sons dominates the domestic agenda with a Thursday board meeting, a possible Rs 9 to 12.5 lakh crore IPO valuation and a split in the Tata Trusts, while FPIs have pulled Rs 13,138 crore from Indian equities this month. The Fed decides on Wednesday with a hike expected, followed by the Bank of England and Bank of Japan, and India's inflation print lands the same week.",
+ "scoreboard": [
+  {
+   "label": "Nifty 50",
+   "value": "23,398.10",
+   "changePct": -0.34
+  },
+  {
+   "label": "Sensex",
+   "value": "74,781.76",
+   "changePct": -0.16
+  },
+  {
+   "label": "USD/INR",
+   "value": "95.54",
+   "changePct": -0.16
+  },
+  {
+   "label": "Brent $",
+   "value": "$107.67",
+   "changePct": 2.92
+  },
+  {
+   "label": "Gold $",
+   "value": "$4,374",
+   "changePct": 0.18
+  },
+  {
+   "label": "US 10Y",
+   "value": "4.97%",
+   "change": "+3 bp",
+   "changePct": null
+  }
+ ],
+ "groups": [
+  {
+   "label": "Markets",
+   "items": [
+    {
+     "text": "NSE and BSE are shut Monday for Ganesh Chaturthi. The Nifty closed Friday at 23,398.10 and the Sensex at 74,781.76 after a fifth weekly loss, with the Nifty rebounding 0.7 percent from its intraday low, and analysts say it enters the week at a crucial support zone.",
+     "ids": [
+      "b6809f45cbc3",
+      "f3e96a37bb99",
+      "48fcc1d29032"
+     ]
+    },
+    {
+     "text": "Asian shares fell on Monday as oil rose and rate hikes loomed, with the Nikkei down about 1.8 percent to 62,887 and Korea's Kospi off more than 3 percent as SK Hynix and Samsung dropped on calls for an AI slowdown. Nasdaq futures slid nearly 400 points.",
+     "ids": [
+      "76f61243013b",
+      "b03166f04633",
+      "7bec6b74d885"
+     ]
+    },
+    {
+     "text": "Brent rose about 3 percent to 107.67 dollars after Saudi Arabia shut its East-West pipeline, an outage that threatens about 4 percent of global supply, and Gulf states postponed talks with Iran on reopening Hormuz.",
+     "ids": [
+      "7bec6b74d885",
+      "58f4448e1d9f",
+      "11a141af03d1"
+     ]
+    },
+    {
+     "text": "FPIs withdrew Rs 13,138 crore from Indian equities in the first half of September as crude, US yields and a firm dollar weighed, though some analysts see flows returning if US yields and oil ease.",
+     "ids": [
+      "104e153dae7c",
+      "5faf0e9f7e75"
+     ]
+    },
+    {
+     "text": "Gold edged lower to about 4,374 dollars as hot US inflation firmed Fed hike bets, and the US 10-year yield sits at 4.97 percent, on the doorstep of 5 percent, which bond investors see as a warning sign for stocks.",
+     "ids": [
+      "b854f465a239",
+      "64ffec6b2bad",
+      "2cd3f7202db2"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "RBI, SEBI and policy",
+   "items": [
+    {
+     "text": "Tata Sons could be valued at Rs 9 to 12.5 lakh crore in an IPO against a portfolio worth Rs 15 to 16 lakh crore. Its board meets Thursday with the Tata Trusts split between Noel Tata, who wants to stay private, and Venu Srinivasan, who backs a listing, while SP Group bonds are expected to tighten on a clearer path to monetising its stake.",
+     "ids": [
+      "ba5d431616ac",
+      "0ba6a14f2f31",
+      "9fca6fa7ecf6",
+      "8b996029aae1",
+      "0be1bbcadb43"
+     ]
+    },
+    {
+     "text": "Banking system liquidity is at a record surplus even as the RBI drains cash, talk of two back-to-back 25 basis point repo hikes is growing, and under new fraud rules only the disputed amount in a suspected money-mule account can be frozen. Banks also want RBI approval to apply new rules to nearly Rs 1 lakh crore of old unsettled trade deals.",
+     "ids": [
+      "c2b62228aa8e",
+      "e83b638721df",
+      "006367ad9bcc",
+      "7962d4f16ab7"
+     ]
+    },
+    {
+     "text": "Traders responding to SEBI's closing auction consultation favour returning to the old VWAP settlement for a year over a blended method, and experts back the overhaul as a way to cut expiry-day volatility.",
+     "ids": [
+      "cc68aad9f6f0",
+      "c81415e43f51",
+      "133838feb20f"
+     ]
+    },
+    {
+     "text": "HDFC Bank has put insider Kaizad Bharucha and an external candidate, believed to be K Balasubramanian, before the RBI for CEO and is seeking a tenure-rule relaxation so Bharucha could serve a full term.",
+     "ids": [
+      "18f637394e5f",
+      "f596a7b1df3d"
+     ]
+    },
+    {
+     "text": "Five mainboard and six SME IPOs seek about Rs 24,500 crore this week, led by NSE opening September 17. Bank of America's Rs 18,268 crore investment in Jio Credit should close by December, and the India-EU trade deal gives Indian carmakers a 2.5 lakh vehicle concessional quota and steel mills a 6.94 lakh tonne export quota.",
+     "ids": [
+      "a8d22f1e83f2",
+      "03b0812d2cc1",
+      "749223f855f7",
+      "ba069366bde9"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "World",
+   "items": [
+    {
+     "text": "The Fed decides on Wednesday under new chair Kevin Warsh with a hike expected, followed by the Bank of England and Bank of Japan on successive days, even as Trump demands the world's lowest rates. Analysts call it the test of whether G7 central banks will tighten into an oil shock.",
+     "ids": [
+      "55b15d58b7b0",
+      "e474fed8787b",
+      "b64f65b1342f",
+      "c35b13a78f99"
+     ]
+    },
+    {
+     "text": "Gulf states postponed their Hormuz talks with Iran for lack of consensus, Houthi fighters advanced in Yemen, and Trump told Ukraine to stop striking Russian refineries, blaming those attacks for record diesel prices. Russia is importing record fuel from India as a result.",
+     "ids": [
+      "11a141af03d1",
+      "7b3ad32df367",
+      "30cb6d06fb12",
+      "59ed6717ce55"
+     ]
+    },
+    {
+     "text": "Trump rejected calls from AI leaders for a slowdown, citing the race with China, while Anthropic told investors it will be profitable for a second quarter ahead of a reported October Nasdaq IPO and OpenAI's Altman ruled out a listing this year. Chip stocks are seen under short-term pressure.",
+     "ids": [
+      "1a5b6e6fbf0a",
+      "0ded817eb58f",
+      "7d5086dc8247",
+      "e11793b72842",
+      "aca618e0461e"
+     ]
+    },
+    {
+     "text": "Trump scrapped tariffs on Irish whiskey as he ended his visit, Michael Dell's family office is leading a 7.7 billion dollar deal for insurance broker Baldwin, and Amazon paused operations with cargo carrier 21 Air after a deadly Miami crash.",
+     "ids": [
+      "162a032f2fe5",
+      "8f3acb9c1f4a",
+      "912ff1fbeba9"
+     ]
+    }
+   ]
+  }
+ ],
+ "watch": [
+  "Tuesday's reopening on Dalal Street after three days of global news, with the Nifty at 23,398 and analysts eyeing the 23,900 to 24,000 zone as resistance.",
+  "The Fed's decision on Wednesday, where a quarter-point hike is expected, then the Bank of England and Bank of Japan on the following days.",
+  "India's inflation data this week, with a print near 5 percent strengthening the case for RBI rate hikes, and export figures.",
+  "Thursday: Tata Sons' board meeting on the RBI listing order and the opening of the NSE IPO, with Brent at 108 dollars and Hormuz talks stalled in the background."
+ ]
+}
