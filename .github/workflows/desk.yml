@@ -34,9 +34,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install playwright && python -m playwright install --with-deps chromium
-      - if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
-        run: pip install anthropic
+      - run: pip install anthropic playwright && python -m playwright install --with-deps chromium
       - name: Pick the edition for this run
         id: mode
         run: |
