@@ -112,6 +112,18 @@ a{color:var(--accent)}
 .brief ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:14.5px}
 .brief li{margin:5px 0}
 .brief .more{display:inline-block;margin-top:10px;font-weight:600;font-size:13.5px;color:var(--accent)}
+.paper{margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background:#F6DBCF;color:#1B1B1B;border:1px solid #E7C4B4}
+.paper .thumb{width:44px;height:60px;border-radius:3px;background:#FBEDE5;border:1px solid #D9B4A3;display:flex;flex-direction:column;justify-content:space-between;padding:5px 6px}
+.paper .thumb i{display:block;height:3px;background:#1B1B1B;border-radius:1px}
+.paper .thumb i.t{height:6px}
+.paper .thumb i.s{width:60%;background:#8A2F1F}
+.paper h3{margin:0;font-family:var(--serif);font-weight:600;font-size:17px;line-height:1.2;color:#1B1B1B}
+.paper p{margin:2px 0 8px;font-size:12.5px;color:#4a3a34}
+.paper .acts{display:flex;gap:8px;flex-wrap:wrap}
+.paper .acts a{display:inline-block;padding:7px 12px;border-radius:8px;font-weight:600;font-size:13px;text-decoration:none;background:#1B1B1B;color:#F6DBCF}
+.paper .acts a.ghost{background:transparent;color:#1B1B1B;border:1px solid #1B1B1B}
+.paper .eds{grid-column:1/-1;font-size:12px;color:#4a3a34}
+.paper .eds a{color:#8A2F1F;font-weight:600;text-decoration:none;margin-right:10px;white-space:nowrap}
 
 /* story list */
 .stories{display:flex;flex-direction:column}
@@ -249,6 +261,7 @@ a{color:var(--accent)}
   <main>
     <!-- TODAY -->
     <section class="view active" id="view-today" aria-labelledby="todayTitle">
+      <div id="paperCard"></div>
       <div id="briefCard"></div>
       <div class="toolbar">
         <div class="seg" role="group" aria-label="Region">
@@ -391,7 +404,7 @@ function renderFresh(){
   const el=$("fresh"), tx=$("freshText");
   if(!state.feed){ el.className="fresh off"; tx.textContent = state.dbResolved ? "Offline" : "Loading…"; return; }
   const ageH = (Date.now()-Date.parse(state.feed.updatedAt))/3600000;
-  el.className = "fresh"+(ageH>2.5?" stale":"");
+  el.className = "fresh"+(ageH>30?" stale":"");
   tx.textContent = "Updated "+ago(state.feed.updatedAt);
 }
 setInterval(renderFresh, 60000);
@@ -466,6 +479,21 @@ function renderBrief(){
     ${d.standfirst?`<p>${esc(d.standfirst)}</p>`:""}
     <ul>${bullets.map(b=>`<li>${esc(b)}</li>`).join("")}</ul>
     <button class="more" data-go="recap">Read the full recap →</button>
+  </div>`;
+}
+
+// ---------- today's paper ----------
+function renderPaper(){
+  const box=$("paperCard"); const p=state.paper;
+  if(!p||!p.latest){ box.innerHTML=""; return; }
+  const l=p.latest; const d=new Date(l.date+"T00:00:00");
+  const label = fmtDate(d,{weekday:"long", day:"numeric", month:"long"});
+  const eds=(p.editions||[]).slice(1,7).map(e=>`<a href="paper/${esc(e.file)}" target="_blank" rel="noopener">${esc(fmtDate(new Date(e.date+"T00:00:00"),{day:"numeric",month:"short"}))}</a>`).join("");
+  box.innerHTML = `<div class="paper">
+    <div class="thumb" aria-hidden="true"><i class="t"></i><i></i><i class="s"></i><i></i><i></i></div>
+    <div><h3>Today's paper · ${esc(label)}</h3><p>Four pages: front page, Markets & Money, Economy & Policy, World & Corporate. Edition ${esc(l.number)}${l.bytes?" · "+Math.round(l.bytes/1024)+" KB":""}.</p>
+      <div class="acts"><a href="paper/latest.pdf" target="_blank" rel="noopener">Read the paper</a><a class="ghost" href="paper/${esc(l.file)}" download="${esc(l.file)}">Download PDF</a></div></div>
+    ${eds?`<div class="eds">Earlier editions: ${eds}</div>`:""}
   </div>`;
 }
 
@@ -633,7 +661,7 @@ function showView(v){
   document.querySelectorAll(".nav button").forEach(b=>{ if(b.dataset.view===v) b.setAttribute("aria-current","page"); else b.removeAttribute("aria-current"); });
   window.scrollTo({top:0});
 }
-function renderAllLists(){ renderToday(); renderSections(); renderSaved(); renderBrief(); }
+function renderAllLists(){ renderToday(); renderSections(); renderSaved(); renderBrief(); renderPaper(); }
 function renderAll(){ renderFresh(); renderRail(); renderAllLists(); renderRecap(); renderMarkets(); }
 
 document.addEventListener("click", (e)=>{
@@ -672,8 +700,8 @@ let loadedOnce = false;
 async function getJson(name){ const r = await fetch(DATA+name+"?t="+Math.floor(Date.now()/60000), {cache:"no-store"}); if(!r.ok) throw new Error(name+" "+r.status); return r.json(); }
 async function load(){
   try{
-    const [feed, markets, archive] = await Promise.all([getJson("feed.json"), getJson("markets.json"), getJson("archive.json").catch(()=>({dailies:[],weeklies:[]}))]);
-    state.feed = feed; state.markets = markets;
+    const [feed, markets, archive, paper] = await Promise.all([getJson("feed.json"), getJson("markets.json"), getJson("archive.json").catch(()=>({dailies:[],weeklies:[]})), fetch("paper/index.json?t="+Math.floor(Date.now()/60000),{cache:"no-store"}).then(r=>r.ok?r.json():null).catch(()=>null)]);
+    state.feed = feed; state.markets = markets; state.paper = paper;
     state.dailies = (archive.dailies||[]).slice().sort((a,b)=>(b.date||"").localeCompare(a.date||"")).slice(0,8);
     state.weeklies = (archive.weeklies||[]).slice().sort((a,b)=>(b.week||"").localeCompare(a.week||"")).slice(0,4);
     state.dayIdx = Math.min(state.dayIdx, Math.max(0, state.dailies.length-1));
@@ -682,11 +710,11 @@ async function load(){
   }catch(e){
     console.warn("load failed", e);
     if(!loadedOnce){ state.dbResolved = true; renderFresh();
-      $("todayList").innerHTML = `<div class="empty"><strong>Could not load the desk</strong>Check your connection and pull to refresh. The desk publishes a new edition every hour.</div>`; }
+      $("todayList").innerHTML = `<div class="empty"><strong>Could not load the desk</strong>Check your connection and try again. The desk publishes one edition every morning.</div>`; }
   }
 }
 load();
-setInterval(load, 10*60*1000);
+setInterval(load, 60*60*1000);
 document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible" && loadedOnce) load(); });
 if("serviceWorker" in navigator){ window.addEventListener("load", ()=>{ navigator.serviceWorker.register("sw.js").catch(()=>{}); }); }
 })();

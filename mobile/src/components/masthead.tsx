@@ -14,7 +14,7 @@ export function Masthead() {
   const router = useRouter();
   const { data, offline, loading } = useDesk();
   const age = feedAgeHours(data);
-  const dot = !data ? t.faint : age != null && age > 2.5 ? t.warn : t.gain;
+  const dot = !data ? t.faint : age != null && age > 30 ? t.warn : t.gain;
   const freshText = !data ? (loading ? "Loading…" : "Offline") : offline ? `Offline · ${ago(data.feed.updatedAt)}` : `Updated ${ago(data.feed.updatedAt)}`;
   const quotes = new Map((data?.markets.quotes ?? []).map((q) => [q.symbol, q]));
 

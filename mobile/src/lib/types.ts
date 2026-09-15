@@ -95,9 +95,26 @@ export interface Archive {
   weeklies: Weekly[];
 }
 
+export interface PaperEdition {
+  date: string;
+  file: string;
+  number: number;
+  pages: number;
+  title?: string;
+  bytes?: number;
+  builtAt?: string;
+}
+
+export interface PaperIndex {
+  latest?: PaperEdition;
+  editions: PaperEdition[];
+  updatedAt?: string;
+}
+
 export interface DeskData {
   feed: Feed;
   markets: Markets;
   archive: Archive;
+  paper?: PaperIndex | null;
   fetchedAt: number;
 }

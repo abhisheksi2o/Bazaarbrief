@@ -1,6 +1,6 @@
 # Bazaar Brief
 
-A daily financial and economic news desk for India and the world. Two deployments share one pipeline:
+A daily financial and economic newspaper for India and the world: one edition every morning at 06:00 IST, as a four-page PDF in a Mint-style broadsheet format, a website and a mobile app. Two deployments share one pipeline:
 
 1. **Standalone site (GitHub Pages)** – https://abhisheksi2o.github.io/Bazaarbrief/ – built by GitHub Actions, no login needed, installable on a phone as a web app. This is the base for the Play Store / App Store build.
 2. **Claude artifact** – https://claude.ai/code/artifact/b39ceaff-f50f-42a1-b31d-b4357b2f4808 – the original version, refreshed by claude.ai Routines.
@@ -9,9 +9,10 @@ A daily financial and economic news desk for India and the world. Two deployment
 
 - `pipeline.py` – fetches ~30 Indian and global feeds plus Yahoo Finance quotes, cleans, de-duplicates, classifies into 12 sections and 2 regions, ranks. `--merge` carries editorial notes over from the previous feed.
 - `editor.py` – the editorial layer through the Claude API: section fixes, junk removal, story order, "why it matters" notes, recap of the day, recap of the week. Model defaults to `claude-opus-5`; set the `DESK_MODEL` repository variable to `claude-sonnet-5` for a cheaper desk.
-- `build.py` – orchestrates a run (`--mode wire|edition|weekend`) and writes the static site to `site/`.
+- `build.py` – orchestrates a run (`--mode edition`) and writes the static site to `site/`, then calls `paper.py`.
+- `paper.py` – the four-page paper: page 1 front page, page 2 Markets & Money, page 3 Economy & Policy, page 4 World & Corporate. Builds HTML (salmon paper, serif headlines, flowing columns) and prints it to PDF with headless Chromium. Output: `site/paper/latest.pdf`, `site/paper/bazaar-brief-YYYY-MM-DD.pdf`, `site/paper/index.json` (last 14 editions).
 - `web/` – the standalone app: `index.html`, web manifest, service worker, icons. Reads `data/*.json` next to it.
-- `.github/workflows/desk.yml` – the schedule: hourly wire refresh, weekday editions at 07:00 / 16:30 / 22:00 IST, weekend edition at 09:00 IST.
+- `.github/workflows/desk.yml` – builds on every push of `editorial/` (the desk's morning push) with a 06:45 IST fallback schedule.
 - `editorial/` – edited feed and recaps pushed by the claude.ai Routines after every edition (covered by a Claude subscription, no API key needed). `build.py` uses these when `ANTHROPIC_API_KEY` is absent.
 - `app.html`, `ROUTINE.md`, `ROUTINE-HOURLY.md`, `seed/` – the Claude-artifact deployment.
 
@@ -43,10 +44,10 @@ python3 -m http.server -d site 8000   # open http://localhost:8000
 | `weeklies/YYYY-Www` | recap of the week |
 | `pipeline/script` | the pipeline source |
 
-## Schedule (Routines)
+## Schedule
 
-- Every hour: wire refresh. Runs `pipeline.py --merge` against the current feed so new stories arrive hourly while editorial notes on existing stories are kept.
-- Weekdays at 07:00, 16:30 and 22:00 IST: morning brief, closing wrap, late edition (editorial pass, why-it-matters notes, recap of the day).
-- Saturday and Sunday at 09:00 IST: weekend edition plus recap of the week.
+- 06:00 IST daily: the desk Routine ("Bazaar Brief – morning paper") fetches the last 24 hours, edits, writes the recap (and the recap of the week on Saturdays), publishes to the artifact and pushes `editorial/` here.
+- The push builds the site and the PDF within a few minutes; the paper is at https://abhisheksi2o.github.io/Bazaarbrief/paper/latest.pdf and listed on the site and in the app.
+- No other refreshes run during the day.
 
 The editorial Routines fire into one standing claude.ai session that has this repository checked out with push access ("Bazaar Brief desk (standing editorial session)"). Each edition writes to the artifact database and pushes `editorial/` here, which triggers the site build. Change or pause the Routines from the Routines list on claude.ai; if the standing session is ever archived, create a new session with this repo as its source and re-point the Routines at it.

@@ -4,10 +4,10 @@ this is an edition, and write a static site into ./site for GitHub Pages.
 
 Usage: python3 build.py --mode wire|edition|weekend [--site-url https://.../] [--out site]
 
-  wire     hourly: refresh stories and quotes, keep existing editorial notes
-  edition  weekday editorial edition: edit the feed, write the recap of the day
-           (and the recap of the week on Friday evening)
-  weekend  weekend edition: edit, recap of the day, recap of the week
+  edition  the daily morning paper: stories, notes and recaps from editorial/,
+           the site, and the four-page PDF
+  wire     stories and quotes only (manual use)
+  weekend  same as edition; kept for compatibility
 
 The previous feed and the recap archive are fetched from the live site so that
 notes and history survive between stateless CI runs.
@@ -84,7 +84,7 @@ def apply_repo_editorial(feed, ed_feed, now_utc):
             for k in ("why", "section", "region"):
                 if o.get(k):
                     a[k] = o[k]
-    if age_h <= 4:  # a fresh edition: keep the editor's order for the top of the page
+    if age_h <= 12:  # a fresh edition: keep the editor's order for the top of the page
         order = {a["id"]: i for i, a in enumerate(ed_feed["articles"][:40])}
         feed["articles"].sort(key=lambda a: (order.get(a["id"], 10 ** 6), -a.get("score", 0)))
         feed["sessionLabel"] = ed_feed.get("sessionLabel") or feed["sessionLabel"]
@@ -108,9 +108,8 @@ def label_for(now_ist, mode):
     if mode == "weekend":
         return "Weekend edition"
     if mode == "wire":
-        return "Hourly update"
-    h = now_ist.hour + now_ist.minute / 60
-    return "Morning brief" if h < 11 else ("Closing wrap" if h < 17 else "Late edition")
+        return "Wire update"
+    return "Morning paper"
 
 
 def main():
@@ -206,6 +205,16 @@ def main():
             json.dump(doc, f, ensure_ascii=False, separators=(",", ":"))
     print("site written to", out, "|", label, "|", len(feed["articles"]), "stories | edited:", edited,
           "| dailies:", len(archive["dailies"]), "| weeklies:", len(archive["weeklies"]))
+
+    # 5. The four-page paper (PDF + HTML). A paper failure must not take the site down.
+    try:
+        import paper
+        idx = paper.build(feed, markets, archive, os.path.join(out, "paper"), site_url=args.site_url, now=now_utc)
+        status["paper"] = idx.get("latest")
+        with open(os.path.join(data, "status.json"), "w") as f:
+            json.dump(status, f, ensure_ascii=False, separators=(",", ":"))
+    except Exception as e:
+        print("paper build failed:", repr(e))
 
 
 if __name__ == "__main__":

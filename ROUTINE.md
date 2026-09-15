@@ -1,4 +1,4 @@
-New edition. You are the desk editor for "Bazaar Brief", a financial and economic news app for a busy Indian reader. This conversation is the standing desk session and the GitHub repository https://github.com/abhisheksi2o/Bazaarbrief is checked out here (find it with `git -C <path> remote -v`; it is the same path as in earlier runs). Do this run from scratch following the steps below exactly, autonomously, without questions. Do not open pull requests. Start by removing any leftover ./out and ./prev directories from earlier runs.
+Morning paper. You are the desk editor for "Bazaar Brief", a daily four-page financial newspaper for a busy Indian reader. This conversation is the standing desk session and the GitHub repository https://github.com/abhisheksi2o/Bazaarbrief is checked out here (find it with `git -C <path> remote -v`; it is the same path as in earlier runs). Do this run from scratch following the steps below exactly, autonomously, without questions. Do not open pull requests. Start by removing any leftover ./out and ./prev directories from earlier runs.
 
 ARTIFACT: https://claude.ai/code/artifact/b39ceaff-f50f-42a1-b31d-b4357b2f4808
 All data lives in this artifact's database. Use the Artifact tool with action "read_db" / "write_db" and this url. If a write is refused because this conversation has not read the artifact, first run action "read" on the url, then retry.
@@ -17,7 +17,7 @@ Read the top ~90 stories in out/feed.json (titles and summaries). Then, with a s
  c) Choose the order of the top ~30 stories: the day's market wrap (Sensex/Nifty close, or the opening/GIFT Nifty setup in the morning) first, then the biggest macro drivers (oil, rupee, RBI, inflation, Fed/ECB, bonds), then policy/SEBI, corporate, global. Reorder the articles array accordingly; leave the rest in their pipeline order.
  d) Write a "why" field (1-2 sentences, max ~45 words, plain English, specific to India where relevant, no hype) for the top ~35 stories that do not already have one, and rewrite any carried-over "why" that is now out of date. It should tell a reader with no time why this matters for the Indian economy or their investments.
  e) Rewrite out/feed.json = {"updatedAt": <ISO now, UTC>, "articles": [...edited...], "count": n, "sessionLabel": <label>, "sources": [sorted unique source names]}.
- Determine the label from the current IST time (UTC+5:30): before 11:00 IST "Morning brief"; 11:00-17:00 "Closing wrap"; after 17:00 "Late edition".
+ The label is always "Morning paper"; the edition is dated today (IST) and covers yesterday's session, the overnight US and European sessions and this morning's news.
 
 STEP 4 - Write the recap of the day: out/daily.json
  {"date": "YYYY-MM-DD" (IST date), "dateLabel": "Thu 10 Sep", "sessionLabel": <label above>, "readMinutes": 3, "updatedAt": <ISO now>,
@@ -30,7 +30,7 @@ STEP 4 - Write the recap of the day: out/daily.json
   "watch": [3-4 short lines on what to watch next: data releases, central bank meetings, levels] }
  In the morning run, the recap covers the previous evening/overnight and sets up the day; at the close it covers the day; late edition adds the US/European session. Always write the whole document fresh (it replaces the earlier one for the same date).
 
-STEP 5 - Recap of the week (ONLY on Friday after 15:30 IST, or on Saturday/Sunday): out/weekly.json
+STEP 5 - Recap of the week (ONLY on Saturday): out/weekly.json
  {"week": "YYYY-Www" (ISO week), "rangeLabel": "7-11 Sep", "readMinutes": 4, "updatedAt": ISO now, "title", "standfirst", "scoreboard": [six entries using weekPct from markets.json: Nifty 50, Sensex, USD/INR, Brent $, Gold $, S&P 500], "groups": [{"label":"India","items":[...5]},{"label":"World","items":[...5]}], "watch": [3-4 lines for the week ahead]}
  Read the previous dailies for this week (read_db list on collection "dailies") so the weekly reflects the whole week, not just today.
 

@@ -1,10 +1,11 @@
 import { useRouter } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
 import { useMemo, useState } from "react";
 import { FlatList, Pressable, RefreshControl, ScrollView, Text, TextInput, View } from "react-native";
 
 import { StoryRow } from "@/components/story-row";
 import { Button, Chip, Empty, Eyebrow, SectionHead, Segmented } from "@/components/ui";
-import { useDesk } from "@/lib/data";
+import { PAPER_BASE, useDesk } from "@/lib/data";
 import { SECTIONS, sectionOf } from "@/lib/sections";
 import { usePrefs } from "@/lib/store";
 import { fonts, useTokens } from "@/lib/theme";
@@ -52,8 +53,28 @@ export default function TodayScreen() {
     setRefreshing(false);
   };
 
+  const paper = data?.paper?.latest;
   const header = (
     <View>
+      {paper && !filtered && (
+        <View style={{ marginTop: 14, backgroundColor: "#F6DBCF", borderRadius: 14, borderWidth: 1, borderColor: "#E7C4B4", paddingHorizontal: 14, paddingVertical: 12, flexDirection: "row", gap: 12, alignItems: "center" }}>
+          <View style={{ width: 44, height: 60, borderRadius: 3, backgroundColor: "#FBEDE5", borderWidth: 1, borderColor: "#D9B4A3", padding: 5, justifyContent: "space-between" }}>
+            <View style={{ height: 6, backgroundColor: "#1B1B1B", borderRadius: 1 }} /><View style={{ height: 3, backgroundColor: "#1B1B1B" }} /><View style={{ height: 3, width: "60%", backgroundColor: "#8A2F1F" }} /><View style={{ height: 3, backgroundColor: "#1B1B1B" }} /><View style={{ height: 3, backgroundColor: "#1B1B1B" }} />
+          </View>
+          <View style={{ flex: 1 }}>
+            <Text style={{ fontFamily: fonts.serifBold, fontSize: 17, color: "#1B1B1B" }}>Today's paper</Text>
+            <Text style={{ fontFamily: fonts.sans, fontSize: 12.5, color: "#4a3a34", marginTop: 2, marginBottom: 8 }}>Four pages, edition {paper.number}. Front page, Markets & Money, Economy & Policy, World & Corporate.</Text>
+            <View style={{ flexDirection: "row", gap: 8, flexWrap: "wrap" }}>
+              <Pressable onPress={() => WebBrowser.openBrowserAsync(PAPER_BASE + "latest.pdf")} style={{ backgroundColor: "#1B1B1B", paddingHorizontal: 12, paddingVertical: 7, borderRadius: 8 }}>
+                <Text style={{ fontFamily: fonts.sansSemi, fontSize: 13, color: "#F6DBCF" }}>Read the paper</Text>
+              </Pressable>
+              <Pressable onPress={() => WebBrowser.openBrowserAsync(PAPER_BASE + paper.file)} style={{ borderWidth: 1, borderColor: "#1B1B1B", paddingHorizontal: 12, paddingVertical: 7, borderRadius: 8 }}>
+                <Text style={{ fontFamily: fonts.sansSemi, fontSize: 13, color: "#1B1B1B" }}>Download PDF</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      )}
       {daily && !filtered && (
         <View style={{ marginTop: 14, backgroundColor: t.surface2, borderRadius: 14, borderWidth: 1, borderColor: t.line2, paddingHorizontal: 16, paddingTop: 16, paddingBottom: 14 }}>
           <View style={{ flexDirection: "row", justifyContent: "space-between", gap: 10 }}>
