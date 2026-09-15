@@ -12,12 +12,12 @@ Usage: python3 build.py --mode wire|edition|weekend [--site-url https://.../] [-
 The previous feed and the recap archive are fetched from the live site so that
 notes and history survive between stateless CI runs.
 
-Editorial content comes from one of two places:
-  * ANTHROPIC_API_KEY set  -> editor.py calls the Claude API (pay-as-you-go)
-  * otherwise              -> the editorial/ folder in this repo, which the
-                              claude.ai Routines (covered by a Claude subscription)
-                              push after each edition: editorial/feed.json,
-                              editorial/dailies/<date>.json, editorial/weeklies/<week>.json
+Editorial content comes from one of three places, in this order:
+  * editorial/ in this repo, when a claude.ai Routine pushed a fresh edition
+    (optional; costs Claude usage on the subscription)
+  * ANTHROPIC_API_KEY set  -> editor.py calls the Claude API (optional, pay-as-you-go)
+  * otherwise              -> desk.py, the rule-based desk: runs entirely on
+                              GitHub Actions, costs nothing, needs no account
 """
 import argparse
 import datetime as dt
@@ -117,6 +117,8 @@ def main():
     ap.add_argument("--mode", default="wire", choices=["wire", "edition", "weekend"])
     ap.add_argument("--site-url", default=os.environ.get("SITE_URL", ""))
     ap.add_argument("--out", default="site")
+    ap.add_argument("--desk", default="auto", choices=["auto", "rules"],
+                    help="rules: ignore any fresh Routine edition and use the free rule-based desk")
     args = ap.parse_args()
 
     now_utc = dt.datetime.now(dt.timezone.utc)
@@ -163,9 +165,31 @@ def main():
     archive["weeklies"] = merge_docs(archive["weeklies"], ed_docs["weeklies"], "week")[:8]
     if from_repo:
         status["editorial"] = "routines"
+    fresh_repo_edition = args.desk == "auto" and from_repo and ed_feed and (now_utc - dt.datetime.fromisoformat(
+        ed_feed["updatedAt"].replace("Z", "+00:00"))).total_seconds() < 12 * 3600
+    want_weekly = args.mode == "weekend" or now_ist.weekday() == 5 or (now_ist.weekday() == 4 and now_ist.hour >= 15)
     if args.mode != "wire":
-        if not os.environ.get("ANTHROPIC_API_KEY"):
-            print("ANTHROPIC_API_KEY not set: using the editorial/ folder only")
+        if fresh_repo_edition:
+            print("fresh edition in editorial/: using the Routine's edit and recap")
+            status["editorial"] = "routines"
+        elif not os.environ.get("ANTHROPIC_API_KEY"):
+            import desk
+            print("no fresh Routine edition and no API key: running the rule-based desk (free)")
+            feed = desk.edit_feed(feed, markets, label, now_ist)
+            daily = desk.write_daily(feed, markets, label, now_ist)
+            archive["dailies"] = [d for d in archive["dailies"] if d.get("date") != daily["date"]]
+            archive["dailies"].insert(0, daily)
+            archive["dailies"].sort(key=lambda d: d.get("date", ""), reverse=True)
+            archive["dailies"] = archive["dailies"][:14]
+            if want_weekly:
+                weekly = desk.write_weekly(feed, markets, archive["dailies"], now_ist)
+                if not any(w.get("week") == weekly["week"] and w.get("desk") != "rules" for w in archive["weeklies"]):
+                    archive["weeklies"] = [w for w in archive["weeklies"] if w.get("week") != weekly["week"]]
+                    archive["weeklies"].insert(0, weekly)
+                    archive["weeklies"].sort(key=lambda w: w.get("week", ""), reverse=True)
+                    archive["weeklies"] = archive["weeklies"][:8]
+            status["editorial"] = "rules"
+            edited = True
         else:
             import editor
             try:
@@ -177,7 +201,6 @@ def main():
                 archive["dailies"] = archive["dailies"][:14]
                 usage = {"edit": u1.output_tokens, "daily": u2.output_tokens,
                          "input": u1.input_tokens + u2.input_tokens}
-                want_weekly = args.mode == "weekend" or (now_ist.weekday() == 4 and now_ist.hour >= 15)
                 if want_weekly:
                     weekly, u3 = editor.write_weekly(feed, markets, archive["dailies"], now_ist)
                     archive["weeklies"] = [w for w in archive["weeklies"] if w.get("week") != weekly["week"]]
@@ -187,6 +210,7 @@ def main():
                     usage["weekly"] = u3.output_tokens
                     usage["input"] += u3.input_tokens
                 status["usage"] = usage
+                status["editorial"] = "api"
                 edited = True
             except Exception as e:  # never lose the wire refresh because the editor failed
                 print("editorial layer failed:", repr(e))

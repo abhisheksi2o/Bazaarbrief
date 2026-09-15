@@ -3,7 +3,7 @@ import { createContext, useContext } from "react";
 
 import type { Archive, Article, DeskData, Feed, Markets, PaperIndex } from "./types";
 
-/** The desk publishes plain JSON files here (GitHub Pages, rebuilt hourly). */
+/** The desk publishes plain JSON files here (GitHub Pages, rebuilt once a day at 06:00 IST). */
 export const SITE_BASE = "https://abhisheksi2o.github.io/Bazaarbrief/";
 export const DATA_BASE = SITE_BASE + "data/";
 export const PAPER_BASE = SITE_BASE + "paper/";

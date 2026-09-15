@@ -2,7 +2,7 @@ name: Bazaar Brief desk
 
 on:
   schedule:
-    - cron: "15 1 * * *"        # 06:45 IST daily fallback; the desk's push at ~06:20 IST normally builds first
+    - cron: "30 0 * * *"        # 06:00 IST daily: the morning paper, built entirely here (no Claude usage)
   workflow_dispatch:
     inputs:
       mode:
@@ -34,7 +34,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install anthropic playwright && python -m playwright install --with-deps chromium
+      - run: pip install playwright && python -m playwright install --with-deps chromium
+      - if: ${{ secrets.ANTHROPIC_API_KEY != '' }}
+        run: pip install anthropic
       - name: Pick the edition for this run
         id: mode
         run: |
