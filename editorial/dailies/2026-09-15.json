@@ -1,0 +1,191 @@
+{
+ "date": "2026-09-15",
+ "dateLabel": "Tue 15 Sep",
+ "sessionLabel": "Morning brief",
+ "readMinutes": 3,
+ "updatedAt": "2026-09-15T01:37:19.362732Z",
+ "title": "US yields touch 5 percent and chip stocks tumble as Dalal Street reopens with rate-hike talk at home",
+ "standfirst": "Indian markets reopen Tuesday after the holiday facing a weak global lead: the US 10-year yield hit 5 percent for the first time since 2023, Nvidia and other chipmakers fell up to 9.5 percent after AI leaders called for a slowdown, and Brent touched 109 dollars on reports the Saudi pipeline will take weeks to reopen. At home, SBI Research and IDFC First now expect an RBI rate hike in October after inflation rose to a 20-month high, foreign investors have sold Rs 14,475 crore this month, and merchant fees are returning on UPI payments above Rs 2,000. The Fed decides on Wednesday with a hike expected, a test of Kevin Warsh's truce with Trump, who called AI safety fears a hoax as Anthropic's co-founder floated a mandatory kill switch.",
+ "scoreboard": [
+  {
+   "label": "Nifty 50",
+   "value": "23,398.10",
+   "changePct": -0.34
+  },
+  {
+   "label": "Sensex",
+   "value": "74,781.76",
+   "changePct": -0.16
+  },
+  {
+   "label": "USD/INR",
+   "value": "95.54",
+   "changePct": 0.53
+  },
+  {
+   "label": "Brent $",
+   "value": "$106.59",
+   "changePct": 1.89
+  },
+  {
+   "label": "Gold $",
+   "value": "$4,343",
+   "changePct": -1.5
+  },
+  {
+   "label": "US 10Y",
+   "value": "4.96%",
+   "change": "-1 bp",
+   "changePct": null
+  }
+ ],
+ "groups": [
+  {
+   "label": "Markets",
+   "items": [
+    {
+     "text": "Sensex and Nifty are expected to open flat on Tuesday, also weekly expiry, with the Nifty at 23,398.10 after five weekly losses. Analysts call the index stretched on the downside and due a bounce, but warn a Fed hike and US yields at 5 percent could trigger fresh foreign selling on top of Rs 14,475 crore already sold in September.",
+     "ids": [
+      "d59a1caaf3be",
+      "bfd9e0867567",
+      "fa86a44126c7",
+      "678f332e8cc3",
+      "9d905e5902a6"
+     ]
+    },
+    {
+     "text": "The US 10-year Treasury yield hit 5 percent, its highest since October 2023, and US stocks ended lower with the S&P 500 down 0.5 percent as the Philadelphia Semiconductor Index tumbled 5.9 percent and Nvidia and Intel fell up to 9.5 percent on AI slowdown calls. Asian stocks slipped on Tuesday morning.",
+     "ids": [
+      "eb537a7aa4dd",
+      "a67f0fad4eec",
+      "9ad9dc35dbc2",
+      "94e23828cc9c",
+      "341769595504"
+     ]
+    },
+    {
+     "text": "Brent surged to 109.30 dollars on Monday on a report that the Saudi East-West pipeline will take weeks to reopen and was at 106.59 dollars early Tuesday, while emerging-market currencies and stocks fell ahead of the Fed.",
+     "ids": [
+      "5fcd3ace203c",
+      "25791cc127ee",
+      "1c1e5ae49470",
+      "9154691d09b4"
+     ]
+    },
+    {
+     "text": "Gold fell 1.5 percent to about 4,343 dollars and MCX gold and silver dropped up to 2 percent on Fed hike bets, while copper hit a three-week low below 14,000 dollars a tonne as the dollar strengthened.",
+     "ids": [
+      "8e6f5ffda568",
+      "795bcd03e521",
+      "a723279700bd"
+     ]
+    },
+    {
+     "text": "Bright spots for Tuesday: Infosys and Wipro ADRs surged up to 6 percent as AI restraint calls eased disruption fears for Indian IT, HDFC Bank's ADR rose 6 percent on Friday after its CEO shortlist, and BofA Securities sees the Nifty at 26,200 by December.",
+     "ids": [
+      "76eb4147f8b0",
+      "efe5867fd2d8",
+      "18ef8e613e83",
+      "512ba40fc492"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "RBI, SEBI and policy",
+   "items": [
+    {
+     "text": "SBI Research and IDFC First Bank expect an RBI rate hike as early as October after retail inflation rose to a 20-month high of 4.82 percent, above the 4 percent target for a third month, and wholesale inflation neared 10 percent. Governor Malhotra met the finance minister ahead of the October 5-7 policy meeting.",
+     "ids": [
+      "781123d463da",
+      "da252928bbcc",
+      "b82967e11774",
+      "ee98f4473ce6",
+      "ae11f620b90f"
+     ]
+    },
+    {
+     "text": "The RBI may need until the second quarter of FY28 to absorb a Rs 4 lakh crore durable liquidity surplus even as it sells Rs 1 lakh crore of bonds, and it will soon require banks to freeze only disputed amounts in cyber fraud cases. Banks face a 15 to 20 basis point rise in FCNR(B) deposit costs.",
+     "ids": [
+      "a27746b63e7f",
+      "75ef133d686d",
+      "a380b937d9c3",
+      "e9918a77632b"
+     ]
+    },
+    {
+     "text": "Merchant fees are returning on UPI payments above Rs 2,000 after the government amended payment rules, while transactions up to Rs 2,000 stay free.",
+     "ids": [
+      "41026d773f2c",
+      "d07bdf30757b",
+      "5dcc4a9eee8b"
+     ]
+    },
+    {
+     "text": "Exchanges and brokers could be the biggest winners from SEBI's proposed closing auction revamp while market makers lose out, and daily derivatives contracts fell 23 percent in August as the rule changes hit volumes.",
+     "ids": [
+      "0f3dc280568e",
+      "c4ebf89d5a01",
+      "17010a5f9410"
+     ]
+    },
+    {
+     "text": "HDFC Bank has proposed Kaizad Bharucha and ICICI Prudential Life's Anup Bagchi as CEO candidates, with Bagchi reported as frontrunner. Tata Sons' listing puts charter changes and a possible offer for sale in focus, NSE's IPO valuation discount to BSE is called misleading, six IPO allotments land Tuesday, and Solar Industries agreed to buy Omnia for Rs 12,951 crore.",
+     "ids": [
+      "8b4905bc7768",
+      "cb0f9db37f5f",
+      "2f1730af8fc8",
+      "5d5e92ad6fa9",
+      "95b168912ebf",
+      "073da23dec93"
+     ]
+    }
+   ]
+  },
+  {
+   "label": "World",
+   "items": [
+    {
+     "text": "The Fed decides on Wednesday with a quarter-point hike expected, the first under Kevin Warsh, whose arrival ended Trump's war with the Fed. A hike would test that truce and Warsh's credibility, while the Fed extended its pause on reserve purchases to mid-October.",
+     "ids": [
+      "764c7b7f486d",
+      "4897e9d3e008",
+      "09abd1f7da6a",
+      "706764adab22"
+     ]
+    },
+    {
+     "text": "Trump said AI does not need more guardrails and called safety fears a hoax, while an Anthropic co-founder said a mandatory kill switch may be needed. The WSJ notes Wall Street keeps buying despite the slowdown calls, and ECB's Lagarde said Europe must build its own AI or risk being cut off.",
+     "ids": [
+      "1a34d6af5a19",
+      "6dbbd0162ae7",
+      "d2abf26fe520",
+      "7a5376041f13"
+     ]
+    },
+    {
+     "text": "ECB policymaker Kazaks said more rate hikes may be needed as war-driven fuel costs feed inflation, and Japan's inflation risks put the Bank of Japan's rate path in focus this week.",
+     "ids": [
+      "763ab1b2d71d",
+      "32cd13531328"
+     ]
+    },
+    {
+     "text": "Canada's Carney urged the EU to cement a trade deal as Ottawa pivots from the US, Washington sanctioned a Russian bank in its campaign against Iran, China tightened control of overseas travel, and Beijing said it is ready to address India's trade concerns.",
+     "ids": [
+      "d70ab1117f4f",
+      "2411c22ef014",
+      "eebe6fa1c6a5",
+      "b1cff6d872d1"
+     ]
+    }
+   ]
+  }
+ ],
+ "watch": [
+  "Tuesday's reopening and weekly expiry on Dalal Street, with the Nifty at 23,398, HDFC Bank and IT in focus, and the 23,900 to 24,000 zone as resistance.",
+  "The Fed's decision on Wednesday, with a quarter-point hike priced at about 90 percent, followed by the Bank of Japan and Bank of England.",
+  "Brent between 106 and 109 dollars with the Saudi pipeline reportedly weeks from reopening, and the US 10-year yield around 5 percent.",
+  "Thursday's Tata Sons board meeting and the opening of the NSE IPO, with the RBI's October 5-7 meeting now a live hike debate."
+ ]
+}
